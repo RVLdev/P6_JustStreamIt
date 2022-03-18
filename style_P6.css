@@ -1,0 +1,135 @@
+/* Déclaration des polices personnalisées */
+
+
+/* Header - disposition des éléments */
+
+body
+{
+    background-color: #bbdbfa;
+    padding: 50px;
+}
+
+#bloc_header
+{
+    display: flex;
+    flex-direction: row;
+    
+    justify-content: space-around;
+    align-items: center;
+    height: 110px;
+    border: 2px solid #444;
+    background-color: #62757f;
+}
+
+#logo
+{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+
+}
+
+#logo img
+{
+    width: 100px;
+    height: 80px;
+    
+}
+
+
+/* Navigation - création conteneur avec 1 bloc par élément du menu */
+nav ul
+{
+    list-style-type: none;
+    display: flex;
+}
+
+nav li
+{
+    margin-right: 15px;
+}
+
+nav a
+{
+    font-size: 1.3em;
+    color: #FFFFFF;
+    padding-bottom: 3px;
+    text-decoration: none;
+}
+
+nav a:hover
+{
+    color: #FFFFFF;
+    border-bottom: 3px solid #FFFFFF;
+}
+
+/* Bannière Meilleur film */
+#best_film_banner
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 268px;
+    border: 2px solid #444;
+}
+
+.bouton_rouge
+{
+    height: 25px;
+    position: absolute;
+    left: 65px;
+    top:300px;
+    background: url('pictures/fond_degraderouge.png') repeat-x;
+    border: 1px solid #760001;
+    border-radius: 5px;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 3px 8px 0px 8px;
+    color: white;
+    text-decoration: none;
+}
+
+.bouton_rouge img
+{
+    border: 0;
+}
+
+
+/* sections "catégorie " */
+
+p{
+    font-size: 1.2em;
+    font-weight: bold;
+    color : black;
+    text-align: center;
+}
+
+.category
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+.thumbnail_film
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 182px;
+    height: 268px;
+    border: 2px solid #444;
+}
+
+
+/* footer */
+#legal_notice
+{
+    font-size: 1em;
+    font-style: italic;
+    color : black;
+    text-align: left;
+}
