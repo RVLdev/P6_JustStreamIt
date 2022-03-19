@@ -3,33 +3,32 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>P6_JustStreamIt</title>
-        <link rel="stylesheet" href="style_P6.css">	   
+        <link rel="stylesheet" href="style_P6.css">
+        <link href="http://fonts.cdnfonts.com/css/seaford" rel="stylesheet">
+        <style>@import url('http://fonts.cdnfonts.com/css/seaford');</style> 
 	</head>
 
     <body>
-    <div id="bloc_page">
-    
         <!-- en-tête de la page avec le logo et le menu -->
         <header>
             <div id="bloc_header">
-
-            <div id="logo">
-                <img src="Logo_JustStreamIt.png" alt="Logo_JustStreamIt"/>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#"> Accueil</a></li>
-                    <li class="deroulant"><a href="#"> Catégories &ensp;</a>
-                        <ul class="sous-menu">
-                            <li><a href="#Aventure">Aventure</li>
-                            <li><a href="#Animation">Animation</li>
-                            <li><a href="#Biographie">Biographie</li>
-
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-
+                <div id="logo">
+                    <img src="Logo_JustStreamIt.png" alt="Logo_JustStreamIt"/>
+                </div>
+                <nav>
+                    <div id="menu">
+                        <div id="nonderoulant">
+                            <p> Accueil</p></div>
+                        <div id="deroulant">
+                            <p> Catégories</p>
+                            <ul id="sous-menu">
+                                <li class="li_ssmenu"><a href="#Aventure">Aventure</a></li>
+                                <li class="li_ssmenu"><a href="#BBB">Animation</a></li>
+                                <li class="li_ssmenu"><a href="#CCC">Biographie</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
             </div>
         </header>
         <p></p>
@@ -37,24 +36,30 @@
        
         <!-- Bannière -->
         <div id="best_film_banner">
-            <div id="best_film_desc"> MEILLEUR FILM : Résumé à récuper via API
-                <a href="#" class="bouton_rouge"> Détails du film
-                <img src="pictures/flecheblanchedroite.png" alt="bouton rouge avec flèche vers la droite" /></a>
+            <div id="best_film_desc"> MEILLEUR FILM 
+                <h2>TITRE DU MEILLEUR FILM</h2>
+                <a href="#" class="bouton_rouge"> Détails du film</a>
+                <p> Résumé du film : à récuper via API Bla blabla bla blablabla.<br />Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </div>
+            <div id="best_film_pic">
+                <img src="image1_test.jpg" alt="affiche du meilleur film"/>
             </div>
         </div>
 
 
         <!-- corps -->
         <section>
-            <p> Catégorie : Films les mieux notés</p>
+            <h3> Catégorie : Films les mieux notés</h3>
             <div class="category">
                 <div class="nav-gauche">
                     <img src="pictures/fleche-gauche-64.png" alt="flèche pour défilement vers la gauche" />
                 </div>
-                <div class="thumbnail_film">vignette film</div>
-                <div class="thumbnail_film">vignette film</div>
-                <div class="thumbnail_film">vignette film</div>
-                <div class="thumbnail_film">vignette film</div>
+                <div class="thumbnail_film">
+                    <img src="image1_test.jpg" alt="affiche film1" /></div>
+                <div class="thumbnail_film">
+                    <img src="image2_test.jpg" alt="affiche film2" /></div>
+                <div class="thumbnail_film">vignette film 182x268 px</div>
+                <div class="thumbnail_film">vignette film 182x268 px</div>
                 <div class="nav-droite">
                     <img src="pictures/fleche-droite-64.png" alt="flèche pour défilement vers la droite" />
                 </div>  
@@ -62,7 +67,7 @@
         </section>
 
         <section>
-            <p id="Aventure">Aventure</p>    
+            <h3 id="Aventure">Aventure</h3>    
             <div class="category">
                 <div class="nav-gauche">
                     <img src="pictures/fleche-gauche-64.png" alt="flèche pour défilement vers la gauche" />
@@ -78,7 +83,7 @@
         </section>
 
         <section>
-            <p id="Animation">Animation</p>
+            <h3 id="Animation">Animation</h3>
             <div class="category">
                 <div class="nav-gauche">
                     <img src="pictures/fleche-gauche-64.png" alt="flèche pour défilement vers la gauche" />
@@ -94,7 +99,7 @@
         </section>
 
         <section>
-            <p id="Biographie">Biographie</p>
+            <h3 id="Biographie">Biographie</h3>
             <div class="category">
                 <div class="nav-gauche">
                     <img src="pictures/fleche-gauche-64.png" alt="flèche pour défilement vers la gauche" />
@@ -116,6 +121,6 @@
             <div id="legal_notice"> Mentions légales</div>
             <p></p>
         </footer>   
-    </div>
+    
     </body>
 </html>
