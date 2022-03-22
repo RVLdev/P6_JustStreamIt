@@ -8,58 +8,63 @@
         <style>@import url('http://fonts.cdnfonts.com/css/seaford');</style> 
 	</head>
 
+
     <body>
         <!-- en-tête de la page avec le logo et le menu -->
-        <header>
+        <header> <!-- balise 'header' inutilisée v 22/03-->
             <div id="bloc_header">
                 <div id="logo">
-                    <img src="Logo_JustStreamIt.png" alt="Logo_JustStreamIt"/>
+                    <img src="pictures/Logo_JustStreamIt.jpg" alt="Logo_JustStreamIt"/>
                 </div>
                 <nav>
-                    <div id="menu">
-                        <div id="nonderoulant">
-                            <p> Accueil</p></div>
-                        <div id="deroulant">
-                            <p> Catégories</p>
-                            <ul id="sous-menu">
-                                <li class="li_ssmenu"><a href="#Aventure">Aventure</a></li>
-                                <li class="li_ssmenu"><a href="#BBB">Animation</a></li>
-                                <li class="li_ssmenu"><a href="#CCC">Biographie</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    <ul>  <!-- menu-->
+                        <li><a href="#">Accueil</a></li> <!-- p -->
+                        <li><a href="#">Catégories</a></li> <!-- p -->
+                    </ul>
                 </nav>
             </div>
         </header>
         <p></p>
-       
-       
-        <!-- Bannière -->
+
+
+        <!-- Bannière pour meilleur film avec :
+        nom decatégorie,
+        titre du film,
+        bouton -> détails du film,
+        résumé du film.
+        -->
+
         <div id="best_film_banner">
             <div id="best_film_desc"> MEILLEUR FILM 
-                <h2>TITRE DU MEILLEUR FILM</h2>
+                <h1>TITRE DU MEILLEUR FILM</h1>
                 <a href="#" class="bouton_rouge"> Détails du film</a>
                 <p> Résumé du film : à récuper via API Bla blabla bla blablabla.<br />Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
             </div>
             <div id="best_film_pic">
-                <img src="image1_test.jpg" alt="affiche du meilleur film"/>
+                <img src="pictures/image1_test.jpg" alt="affiche du meilleur film"/>
             </div>
         </div>
 
 
-        <!-- corps -->
+        <!-- 4 sliders (1 par catégorie de films) -->
         <section>
-            <h3> Catégorie : Films les mieux notés</h3>
+            <h2> Catégorie : Films les mieux notés</h2>
             <div class="category">
                 <div class="nav-gauche">
                     <img src="pictures/fleche-gauche-64.png" alt="flèche pour défilement vers la gauche" />
                 </div>
                 <div class="thumbnail_film">
-                    <img src="image1_test.jpg" alt="affiche film1" /></div>
+                    <img src="pictures/image1_test.jpg" alt="affiche film1" />
+                </div>
                 <div class="thumbnail_film">
-                    <img src="image2_test.jpg" alt="affiche film2" /></div>
-                <div class="thumbnail_film">vignette film 182x268 px</div>
-                <div class="thumbnail_film">vignette film 182x268 px</div>
+                    <img src="pictures/image2_test.jpg" alt="affiche film2" />
+                </div>
+                <div class="thumbnail_film">
+                    <img src="pictures/image3_test.jpg" alt="affiche film3" />
+                </div>
+                <div class="thumbnail_film">
+                    <img src="pictures/image4_test.jpg" alt="affiche film4"/>
+                </div>
                 <div class="nav-droite">
                     <img src="pictures/fleche-droite-64.png" alt="flèche pour défilement vers la droite" />
                 </div>  
@@ -67,15 +72,23 @@
         </section>
 
         <section>
-            <h3 id="Aventure">Aventure</h3>    
+            <h2 id="Aventure">Aventure</h2>    
             <div class="category">
                 <div class="nav-gauche">
                     <img src="pictures/fleche-gauche-64.png" alt="flèche pour défilement vers la gauche" />
                 </div>
-                <div class="thumbnail_film">vignette film</div>
-                <div class="thumbnail_film">vignette film</div>
-                <div class="thumbnail_film">vignette film</div>
-                <div class="thumbnail_film">vignette film</div>
+                <div class="thumbnail_film">
+                    <img src="pictures/image5_test.jpg" alt="affiche film5" />
+                </div>
+                <div class="thumbnail_film">
+                    <img src="pictures/image6_test.jpg" alt="affiche film6" />
+                </div>
+                <div class="thumbnail_film">
+                    <img src="pictures/image7_test.jpg" alt="affiche film7" />
+                </div>
+                <div class="thumbnail_film">
+                    <img src="pictures/image1_test.jpg" alt="affiche film1" />
+                </div>
                 <div class="nav-droite">
                     <img src="pictures/fleche-droite-64.png" alt="flèche pour défilement vers la droite" />
                 </div>
@@ -83,15 +96,23 @@
         </section>
 
         <section>
-            <h3 id="Animation">Animation</h3>
+            <h2 id="Animation">Animation</h2>
             <div class="category">
                 <div class="nav-gauche">
                     <img src="pictures/fleche-gauche-64.png" alt="flèche pour défilement vers la gauche" />
                 </div>
-                <div class="thumbnail_film">vignette film</div>
-                <div class="thumbnail_film">vignette film</div>
-                <div class="thumbnail_film">vignette film</div>
-                <div class="thumbnail_film">vignette film</div>
+                <div class="thumbnail_film">
+                    <img src="pictures/image3_test.jpg" alt="affiche film3" />
+                </div>
+                <div class="thumbnail_film">
+                    <img src="pictures/image4_test.jpg" alt="affiche film4"/>
+                </div>
+                <div class="thumbnail_film">
+                    <img src="pictures/image5_test.jpg" alt="affiche film5" />
+                </div>
+                <div class="thumbnail_film">
+                    <img src="pictures/image6_test.jpg" alt="affiche film6" />
+                </div>
                 <div class="nav-droite">
                     <img src="pictures/fleche-droite-64.png" alt="flèche pour défilement vers la droite" />
                 </div>
@@ -99,23 +120,30 @@
         </section>
 
         <section>
-            <h3 id="Biographie">Biographie</h3>
+            <h2 id="Biographie">Biographie</h2>
             <div class="category">
                 <div class="nav-gauche">
                     <img src="pictures/fleche-gauche-64.png" alt="flèche pour défilement vers la gauche" />
                 </div>
-                <div class="thumbnail_film">vignette film</div>
-                <div class="thumbnail_film">vignette film</div>
-                <div class="thumbnail_film">vignette film</div>
-                <div class="thumbnail_film">vignette film</div>
+                <div class="thumbnail_film">
+                    <img src="pictures/image7_test.jpg" alt="affiche film7" />
+                </div>
+                <div class="thumbnail_film">
+                    <img src="pictures/image1_test.jpg" alt="affiche film1" />
+                </div>
+                <div class="thumbnail_film">
+                    <img src="pictures/image2_test.jpg" alt="affiche film2" />
+                </div>
+                <div class="thumbnail_film">
+                    <img src="pictures/image3_test.jpg" alt="affiche film3" />
+                </div>
                 <div class="nav-droite">
                     <img src="pictures/fleche-droite-64.png" alt="flèche pour défilement vers la droite" />
                 </div>
             </div>
         </section>
 
-        <p></p>
-        
+
 		<!-- pied de page  -->		
 		<footer>
             <div id="legal_notice"> Mentions légales</div>

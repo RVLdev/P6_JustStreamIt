@@ -1,7 +1,7 @@
 /* Déclaration de(s) police(s) personnalisée(s) */
 @font-face
 {
-    font-family: 'Seaford', sans-serif;
+    font-family: 'Seaford';
         src: url('font/SeafordRg.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
@@ -9,145 +9,114 @@
 
 body{
     background-color: #bbdbfa;
-    padding: 50px;
+    padding: 5%;
     font-family: 'Seaford', 'Verdana', Arial, sans-serif;
 }
 
 
-header{
-    list-style-type: none;
-}
-
-/* CONTENEUR pr logo et menu  */
+/* CONTENEUR pr logo + nav  */
 #bloc_header{
     list-style-type: none;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    height: 110px;
+    padding: 2%;
+    height: 13%;
+    width: 100%;
     border: 2px solid #444;
     background-color: #62757f;
-    position: sticky;
+    
     color: white;
+}
+
+/* Element 'logo' */
+#logo{
+    min-width: 116px;
+    height: 80px;
+    overflow: hidden;
 }
 
 #logo img{
-    width: 100px;
-    height: 80px;   
+    width: 116px;
+    height: 80px;
 }
 
-#menu{
-    width: 400px;
+ /* bloc "menu" */
+nav{
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 400px;
+    height: 80px;
+    overflow: hidden;
+}
+
+nav ul{
+    display: flex;
+    flex-direction: row;
+    height: 80px;
+    justify-content: space-between;
+}
+
+nav li{
+    list-style-type: none;
     font-size: 1.3em;
     text-align: center;
-    box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.3);
-    height: 110px;
-    position: sticky;
+    margin: auto;
 }
 
-#nonderoulant{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-content: space-between;
-    flex: 1;
-}
-
-#nonderoulant p{
+nav a{
     color: #FFF;
     padding: 10px;
-}
-
-#deroulant{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-content: space-between;
-    flex: 1;
-}
-
-#deroulant p{
-    color: white;
-    padding: 10px;
-}
-
-#deroulant:hover > p{
-    color: #21deec;
-    text-decoration: underline;
-}
-
-#sous-menu{
-    margin-top: var(60px);
-    position: relative;
-    width: 150px;
-    overflow: hidden;
-    max-height: 0;   
-}
-
-#li_ssmenu{
-    height: 50px;
-    padding-left: 20px;
-    align-items: center;
-    display: flex;
-    color: white;
-}
-
-#sous-menu a {
     text-decoration: none;
-    color: white;
-    font-size: 0.8em;
-}
-
-#sous-menu a:hover{
-    color: #21deec;
-    font-style: italic;
-}
-
-@keyframes apparitionSousMenu {
-    0% {
-        box-shadow: 0px 3px 3px 1px rgba(0, 0, 0, 0);
-        border-left: 3px solid #21deec;
-    }
-    30% {
-        box-shadow: 0px 3px 3px 1px rgba(0,0,0,0.3);
-    }
-    100% {
-        max-height: 50em;
-        border-left: 3px solid #21deec;
-        box-shadow: 0px 3px 3px 1px rgba(0,0,0,0.3);
-    }
-}
-
-#deroulant:hover > #sous-menu{
-    animation: apparitionSousMenu 1s forwards
 }
 
 
-/* Bannière Meilleur film */
+/* Conteneur Meilleur film */
 #best_film_banner{
     display: flex;
     flex-direction: row;
-    align-content: space-around;
-    text-align: center;
-    height: 268px;
+    justify-content: space-around;
+    align-items: center;
+    height: 13%;
+    width: 100%;
     border: 2px solid #444;
+    padding: 15px;
+    overflow: hidden;
+
 }
 
+/* bloc textes et bouton */
 #best_film_desc{
     display: flex;
     flex-direction: column;
+    height: 100%;
+    padding: 8px;
+    text-align: left;
+    overflow: hidden;
+    z-index: 1;
+    flex: 3;
 }
 
+#best_film_desc h1{
+    font-size: 1.8em;
+}
 
+#best_film_desc p {
+    text-align: justify;
+    padding-right: 12px;
+    overflow: auto;
+}
+
+/*bouton pour ouverture fenêtre MODALE*/
 .bouton_rouge{
     height: 25px;
-    width: 200px;
+    width: 110px;
     background: url('pictures/fond_degraderouge.png') repeat-x;
     border: 1px solid #760001;
     border-radius: 5px;
-    font-size: 1.2em;
+    font-size: 1em;
     text-align: center;
     padding: 3px 8px 0px 8px;
     color: white;
@@ -156,39 +125,53 @@ header{
 
 .bouton_rouge img{
     border: 0;
+    overflow: hidden;
 }
 
+/* bloc affiche du film mis en vedette */
 .best_film_pic{
-    display: flex;
-    width: 182px;
-    height: 268px;
+    height: 100%;
     border: 2px solid #444;
+    overflow: hidden;
+}
+
+img{
+    overflow: hidden;
 }
 
 
-/* sections "catégorie " */
+/* Conteneur "catégorie " pour titre de catégorie + carousel d'affiches
+section{}
+*/
 
-h3{
+/* nom de la catégorie : */
+h2{
     font-weight: bold;
     color : black;
+    font-size: 1.4em;
     text-align: center;
 }
 
+/* bloc carousel */
 .category{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    
+    height: 15%;
+    width: 100%;
 }
 
+/* POUR MEMOIRE boutons de défilement pour carousel:
+.nav-gauche {}
+.nav-droite {}
+*/
+
+/* emplacement pour afficher 4 vignettes de films */
 .thumbnail_film{
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 182px;
-    height: 268px;
-    border: 2px solid #444;
+    /*border: 2px solid #444;*/
+    overflow: hidden;
 }
 
 
