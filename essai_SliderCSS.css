@@ -1,0 +1,215 @@
+/* Déclaration de(s) police(s) personnalisée(s) */
+@font-face
+{
+    font-family: 'Seaford';
+        src: url('font/SeafordRg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+/* 1er BLOC-CONTENEUR */
+/* CONTENEUR pr logo + nav  */
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; /*space-evenly;*/
+    align-items: center;
+    border: 2px solid #444;
+    background-color: #344D59;
+    height: 120px;
+    flex-wrap: wrap;
+}
+
+#logo{
+    height: 70%;
+
+}
+#logo img{
+    height: 100%;
+    background-color: #FFF;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+    /* height: 100%;*/
+    overflow: hidden;
+}
+nav ul{
+    display: flex;
+    flex-direction: row;
+    /*height: 100%;*/
+    gap: 30px;
+}
+nav li{
+    list-style-type: none;
+    font-size: 1.6em;
+    text-align: center;
+    
+}
+nav a{
+    color: #FFF;
+    /*padding: 10px;*/
+    text-decoration: none;
+}
+
+/*2e BLOC-CONTENEUR */
+/* Conteneur Meilleur film */
+#best_film_banner{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #444;
+    overflow: hidden;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#best_film_description{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+h1{
+    text-align: left;
+    font-size: 1.5em;
+}
+.bouton_details{
+    height: 20px;
+    width: 120px;
+    background: #760001;
+    border: 1px solid #760001;
+    border-radius: 5px;
+    font-size: 1.1em;
+    text-align: center;
+    padding: 4px 8px 4px 8px;
+    color: white;
+    text-decoration: none;
+}
+p{
+    font-size: 1.0em;
+}
+
+.best_film_thumbnail{
+    margin-top: 4px;
+}
+
+
+/*3e BLOC-CONTENEUR */
+
+section{
+    border: 2px solid rgb(110, 13, 221);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+
+.sous-section{
+    border: 2px solid rgb(13, 221, 13);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+h2{
+    font-size: 1.4em;
+    align-self: center;
+}
+
+.category{
+    border: 2px solid rgb(236, 170, 27);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /*overflow:  auto;   */
+}
+
+/* 04/04 : ajout SLIDER, img.active,  */
+.slider{
+    width: 90%;
+    border: 2px solid pink;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    overflow:  auto; /* ajout scroll */
+}
+
+.slider img{
+    display: none;
+}
+
+img.active{
+    border: 2px solid #444;
+    display: block;
+}
+
+
+
+/*.nav-gauche
+.nav-droite*/
+
+@media all and (max-width: 936px) and (min-width: 873px){
+    .category .slider img.active:nth-child(4) {
+        display: none;
+    }
+}
+
+@media all and (max-width: 872px) and (min-width: 536px){
+    .category .slider img.active:nth-child(4) {
+        display: none;
+    }
+    .category .slider img.active:nth-child(3) {
+        display: none;
+    }
+}
+
+@media all and (max-width: 537px) /*and (min-width: 300px)*/{
+    header{
+        flex-wrap: wrap;
+        padding: 20px;
+        
+        }
+
+    #best_film_banner{
+        flex-wrap: wrap;
+        justify-content: center;
+        
+    }
+    .best_film_thumbnail{
+        margin-bottom: 30px;
+    }
+
+
+    .category .slider img.active:nth-child(4) {
+        display: none;
+    }
+    .category .slider img.active:nth-child(3) {
+        display: none;
+    }
+    .category .slider img.active:nth-child(2) {
+        display: none;
+    }
+
+}
+/*
+@media all and (max-width: 300px){
+    .category .nav-gauche {
+        display: none;
+    }
+    .category .nav-droite {
+        display: none;
+    }
+}*/
