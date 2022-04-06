@@ -134,13 +134,13 @@ h2{
 
 /* Responsive*/
 
-@media all and (max-width: 836px) and (min-width: 873px){
+@media all and (max-width: 936px) and (min-width: 851px){
     .category .thumbnail_film:nth-child(4) {
         display: none;
     }
 }
 
-@media all and (max-width: 872px) and (min-width: 536px){
+@media all and (max-width: 850px) and (min-width: 536px){
     .category .thumbnail_film:nth-child(4) {
         display: none;
     }
