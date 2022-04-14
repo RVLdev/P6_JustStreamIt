@@ -16,7 +16,7 @@ let count = 0;
 const nextThumbnail = document.querySelector('.nav-droite > img'); // ok
 const previousThumbnail = document.querySelector('.nav-gauche > img'); // ok
 
-//Change les 4 images du carrousel  (fonction ok)
+//Change les 4 images du carrousel : affichage successif de la 1ère à la dernière (fonction ok)
 function changePic(availableThumbnails, activeThumbnails, count){
     for (let pictIndex = 0; pictIndex < 4; pictIndex++){
         let pict1 = activeThumbnails[pictIndex];
@@ -27,14 +27,14 @@ function changePic(availableThumbnails, activeThumbnails, count){
     }
 }
 
-//Enchaine la dernière image avec la 1ère et les suivantes
+//Enchaine la dernière image avec la 1ère et les suivantes (charnière fin/début de liste)
 function changeEndOfListPic(availableThumbnails, activeThumbnails, count){
     for (let pictIndex = 0; pictIndex < 4; pictIndex++){
         let pict1 = activeThumbnails[pictIndex];
         let pict1Src = pict1.getAttribute("src");
         
         if ((count + pictIndex) < availableThumbnails.length){
-            let newPict = availableThumbnails[availableThumbnails.length - (availableThumbnails.length - count - pictIndex)];
+            let newPict = availableThumbnails[count + pictIndex];
             console.log(newPict);
             pict1Src = newPict;
             pict1.setAttribute("src", pict1Src);
