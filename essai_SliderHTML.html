@@ -2,7 +2,7 @@
 <html lang="fr">
 	<head>
 		<meta charset="utf-8" />
-		<title>essai_SliderHTML v 04 04</title>
+		<title>essai_SliderHTML</title>
         <link rel="stylesheet" href="essai_SliderCSS.css">
         <link href="http://fonts.cdnfonts.com/css/seaford" rel="stylesheet">
         <style>@import url('http://fonts.cdnfonts.com/css/seaford');</style>
@@ -22,11 +22,9 @@
                 </nav>
         </header>
 
-
         <!-- Bannière pour meilleur film avec : nom decatégorie,
         titre du film, bouton -> détails du film, résumé du film.
         -->
-
         <div id="best_film_banner">
             <div id="best_film_description">
                 <h1>TITRE DU MEILLEUR FILM</h1>
@@ -42,35 +40,48 @@
             </div>
         </div>
 
-
         <!-- 4 sliders (1 par catégorie de films) -->
         <section>
             <div class="sous-section">
                 <h2 id="topRated"> Catégorie : Films les mieux notés</h2>
-                <div class="category">
+                <div class="category1">
                     <div class="nav-gauche">
                         <img src="pictures/fleche-gauche-64.png" alt="flèche pour défilement vers la gauche" />
                     </div>
-                    <!-- 04/04 AJOUT div class="slider" -->
                     <div class="slider">
-                        <img class="active"
-                            src="pictures/image1.jpg" alt="affiche film1" />
-                        <img class="active"
-                            src="pictures/image2.jpg" alt="affiche film2" />
-                        <img class="active"
-                            src="pictures/image3.jpg" alt="affiche film3" />
-                        <img class="active"
-                            src="pictures/image4.jpg" alt="affiche film4"/>
-                        <!-- images de réserve, pour test slider-->
-                        <img src="pictures/image5_test.jpg" alt="affiche film5"/>
-                        <img src="pictures/image6_test.jpg" alt="affiche film6"/>
-                        <img src="pictures/image7_test.jpg" alt="affiche film7"/>
-                        <img src="pictures/image8.jpg" alt="affiche film8"/>
-                        <img src="pictures/image9.jpg" alt="affiche film9"/>
-                        <img src="pictures/image10.jpg" alt="affiche film10"/>
-                        <img src="pictures/image11.jpg" alt="affiche film11"/>
-                        <img src="pictures/image12.jpg" alt="affiche film12"/>
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/image1.jpg" alt="affiche film1"/>
+                        </div>
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/image2.jpg" alt="affiche film2"/>
+                        </div>
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/image3.jpg" alt="affiche film3"/>
+                        </div>
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/image4.jpg" alt="affiche film4"/>
+                        </div>
                     </div>
+                    <!-- PAS UTILE ICI'
+                    <div class="hidden_thumbnails">
+                        <div class="thumbnail">
+                            <img class="inactive"
+                                src="pictures/image5.jpg" alt="affiche film5"/>
+                        </div>
+                        <div class="thumbnail">
+                            <img class="inactive"
+                                src="pictures/image6.jpg" alt="affiche film6"/>
+                        </div>
+                        <div class="thumbnail">
+                            <img class="inactive"
+                                src="pictures/image7.jpg" alt="affiche film7"/>
+                        </div>
+                    </div>
+                    -->
                     <div class="nav-droite">
                         <img src="pictures/fleche-droite-64.png" alt="flèche pour défilement vers la droite" />
                     </div>  
@@ -83,17 +94,17 @@
                     <div class="nav-gauche">
                         <img src="pictures/fleche-gauche-64.png" alt="flèche pour défilement vers la gauche" />
                     </div>
-                    <div class="thumbnail_active">
+                    <div class="thumbnail">
                         <img src="pictures/image5.jpg" alt="affiche film5" />
                     </div>
-                    <div class="thumbnail_active">
+                    <div class="thumbnail">
                         <img src="pictures/image6.jpg" alt="affiche film6" />
                     </div>
-                    <div class="thumbnail_active">
+                    <div class="thumbnail">
                         <img src="pictures/image7.jpg" alt="affiche film7" />
                     </div>
-                    <div class="thumbnail_active">
-                        <img src="pictures/image1.jpg" alt="affiche film1" />
+                    <div class="thumbnail">
+                        <img src="pictures/image8.jpg" alt="affiche film1" />
                     </div>
                     <div class="nav-droite">
                         <img src="pictures/fleche-droite-64.png" alt="flèche pour défilement vers la droite" />
@@ -107,17 +118,17 @@
                     <div class="nav-gauche">
                         <img src="pictures/fleche-gauche-64.png" alt="flèche pour défilement vers la gauche" />
                     </div>
-                    <div class="thumbnail_active">
-                        <img src="pictures/image3.jpg" alt="affiche film3" />
+                    <div class="thumbnail">
+                        <img src="pictures/image9.jpg" alt="affiche film3" />
                     </div>
-                    <div class="thumbnail_active">
-                        <img src="pictures/image4.jpg" alt="affiche film4"/>
+                    <div class="thumbnail">
+                        <img src="pictures/image10.jpg" alt="affiche film4"/>
                     </div>
-                    <div class="thumbnail_active">
-                        <img src="pictures/image5.jpg" alt="affiche film5" />
+                    <div class="thumbnail">
+                        <img src="pictures/image11.jpg" alt="affiche film5" />
                     </div>
-                    <div class="thumbnail_active">
-                        <img src="pictures/image6.jpg" alt="affiche film6" />
+                    <div class="thumbnail">
+                        <img src="pictures/image12.jpg" alt="affiche film6" />
                     </div>
                     <div class="nav-droite">
                         <img src="pictures/fleche-droite-64.png" alt="flèche pour défilement vers la droite" />
@@ -131,17 +142,17 @@
                     <div class="nav-gauche">
                         <img src="pictures/fleche-gauche-64.png" alt="flèche pour défilement vers la gauche" />
                     </div>
-                    <div class="thumbnail_active">
-                        <img src="pictures/image7.jpg" alt="affiche film7" />
+                    <div class="thumbnail">
+                        <img src="pictures/image1.jpg" alt="affiche film7" />
                     </div>
-                    <div class="thumbnail_active">
-                        <img src="pictures/image1.jpg" alt="affiche film1" />
+                    <div class="thumbnail">
+                        <img src="pictures/image2.jpg" alt="affiche film1" />
                     </div>
-                    <div class="thumbnail_active">
-                        <img src="pictures/image2.jpg" alt="affiche film2" />
+                    <div class="thumbnail">
+                        <img src="pictures/image3.jpg" alt="affiche film2" />
                     </div>
-                    <div class="thumbnail_active">
-                        <img src="pictures/image3.jpg" alt="affiche film3" />
+                    <div class="thumbnail">
+                        <img src="pictures/image4.jpg" alt="affiche film3" />
                     </div>
                     <div class="nav-droite">
                         <img src="pictures/fleche-droite-64.png" alt="flèche pour défilement vers la droite" />

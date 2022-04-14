@@ -25,7 +25,6 @@ header{
     height: 120px;
     flex-wrap: wrap;
 }
-
 #logo{
     height: 70%;
 
@@ -34,12 +33,10 @@ header{
     height: 100%;
     background-color: #FFF;
 }
-
 nav{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    
     /* height: 100%;*/
     overflow: hidden;
 }
@@ -113,7 +110,6 @@ section{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-
 }
 
 .sous-section{
@@ -127,60 +123,86 @@ h2{
     align-self: center;
 }
 
+.category1{
+    border: 2px solid rgb(236, 170, 27);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /*justify-content: space-evenly;*/
+    align-items: center;
+    overflow:  hidden;
+}
+
 .category{
     border: 2px solid rgb(236, 170, 27);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    /*justify-content: space-evenly;*/
     align-items: center;
-    /*overflow:  auto;   */
+    overflow:  hidden;
 }
 
-/* 04/04 : ajout SLIDER, img.active,  */
 .slider{
     width: 90%;
-    border: 2px solid pink;
+    border: 2px solid rgb(251, 13, 179);
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    overflow:  auto; /* ajout scroll */
+    overflow:  hidden;
 }
 
+
+/* remplacmt .slider img{} par .thumbnail :
 .slider img{
     display: none;
 }
+*/
 
 img.active{
     border: 2px solid #444;
     display: block;
 }
 
+img.inactive{
+    display: none;
+}
 
+/*.hidden_thumbnails{
+    display: none;
+}*/
 
-/*.nav-gauche
-.nav-droite*/
+.nav-gauche, .nav-droite{
+    border: 2px solid #444;
+    display: block;
+}
 
-@media all and (max-width: 936px) and (min-width: 873px){
-    .category .slider img.active:nth-child(4) {
+@media all and (max-width: 940px) and (min-width: 720px){
+    .slider .thumbnail:nth-child(4) {
+        display: none;
+    }
+    .hidden_thumbnails {
         display: none;
     }
 }
 
-@media all and (max-width: 872px) and (min-width: 536px){
-    .category .slider img.active:nth-child(4) {
+@media all and (max-width: 720px) and (min-width: 536px){
+    .slider .thumbnail:nth-child(4) {
         display: none;
     }
-    .category .slider img.active:nth-child(3) {
+    .slider .thumbnail:nth-child(3) {
+        display: none;
+    }
+    .hidden_thumbnails {
         display: none;
     }
 }
 
-@media all and (max-width: 537px) /*and (min-width: 300px)*/{
+@media all and (max-width: 536px) /*and (min-width: 300px)*/{
     header{
         flex-wrap: wrap;
         padding: 20px;
-        
         }
 
     #best_film_banner{
@@ -192,17 +214,18 @@ img.active{
         margin-bottom: 30px;
     }
 
-
-    .category .slider img.active:nth-child(4) {
+    .slider .thumbnail:nth-child(4) {
         display: none;
     }
-    .category .slider img.active:nth-child(3) {
+    .slider .thumbnail:nth-child(3) {
         display: none;
     }
-    .category .slider img.active:nth-child(2) {
+    .slider .thumbnail:nth-child(2) {
         display: none;
     }
-
+    .hidden_thumbnails {
+        display: none;
+    }
 }
 /*
 @media all and (max-width: 300px){
