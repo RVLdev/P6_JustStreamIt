@@ -11,70 +11,58 @@ let activeThumbnails = document.getElementsByClassName('active');
 console.log(activeThumbnails);
 
 let count = 0;
+console.log('compteur =' + count);
 
 //boutons 'suivant' 'précédent'
 const nextThumbnail = document.querySelector('.nav-droite > img'); // ok
 const previousThumbnail = document.querySelector('.nav-gauche > img'); // ok
 
-//Change les 4 images du carrousel : affichage successif de la 1ère à la dernière (fonction ok)
-function changePic(availableThumbnails, activeThumbnails, count){
+/*Change les 4 images du carrousel.
+pictIndex = index des 4 vignettes 'actives'
+*/
+function changeThumbnail(availableThumbnails, activeThumbnails, count){
     for (let pictIndex = 0; pictIndex < 4; pictIndex++){
         let pict1 = activeThumbnails[pictIndex];
         let pict1Src = pict1.getAttribute("src");
-        let newPict = availableThumbnails[count + pictIndex];
-        pict1Src = newPict;
-        pict1.setAttribute("src", pict1Src);
-    }
-}
-
-//Enchaine la dernière image avec la 1ère et les suivantes (charnière fin/début de liste)
-function changeEndOfListPic(availableThumbnails, activeThumbnails, count){
-    for (let pictIndex = 0; pictIndex < 4; pictIndex++){
-        let pict1 = activeThumbnails[pictIndex];
-        let pict1Src = pict1.getAttribute("src");
-        
-        if ((count + pictIndex) < availableThumbnails.length){
+        if ((count + pictIndex) < 0){
+            let newPict = availableThumbnails[availableThumbnails.length + (count + pictIndex)];
+            console.log(newPict);
+            pict1Src = newPict;
+            pict1.setAttribute("src", pict1Src);
+        } else {
             let newPict = availableThumbnails[count + pictIndex];
             console.log(newPict);
             pict1Src = newPict;
             pict1.setAttribute("src", pict1Src);
-        } else {
-            let newPict = availableThumbnails[count + pictIndex - (availableThumbnails.length)];
-            console.log(newPict);
-            pict1Src = newPict;
-            pict1.setAttribute("src", pict1Src);
-    
         }
     }
 }
 
-
-
-// affiche images suivantes quand utilisateur clique sur bouton 'suivant'
-nextThumbnail.addEventListener('click', function(){
-    count++;
-    if(count < availableThumbnails.length - 3){
-        changePic(availableThumbnails, activeThumbnails, count);
-    } else {
-        if (count > availableThumbnails.length - 1){
-            count = 0; //
-            changePic(availableThumbnails, activeThumbnails, count);
-        } else {
-            changeEndOfListPic(availableThumbnails, activeThumbnails, count)
-        }    
-    }
-    console.log(count);
-});
-
-
-// affiche images précédentes quand utilisateur clique sur bouton 'précédent'
+/* affiche images précédentes quand utilisateur clique sur bouton 'précédent'.
+count = 3 affiche les 4 dernières images de la liste,
+count = -7 affiche la position de départ (4 premières images).
+*/
 previousThumbnail.addEventListener('click', function(){
     count--;
-    if(count < 0){
-        count = 3;
-        changePic(availableThumbnails, activeThumbnails, count);
-    } else {
-        changePic(availableThumbnails, activeThumbnails, count);
+    console.log('count -- = ' + count);
+    if(count > 3){
+        count = - 3;
+    } else if (count < - 7){
+        count = -1;
         }
-    console.log(count);
+    console.log('count = ' + count);
+    changeThumbnail(availableThumbnails, activeThumbnails, count);
+});
+
+// affiche images suivantes quand utilisateur clique sur bouton 'suivant'.
+nextThumbnail.addEventListener('click', function(){
+    count++;
+    console.log('count ++ = ' + count);
+    if(count > 3){ 
+        count = - 3;
+    } else if (count < - 7){
+        count = -1;
+        }
+    console.log('count = ' + count);
+    changeThumbnail(availableThumbnails, activeThumbnails, count);
 });
