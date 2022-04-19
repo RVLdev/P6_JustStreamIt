@@ -103,14 +103,14 @@ p{
 /*3e BLOC-CONTENEUR */
 
 section{
-    border: 2px solid rgb(110, 13, 221);
+    /*border: 2px solid rgb(110, 13, 221);*/
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
 .sous-section{
-    border: 2px solid rgb(13, 221, 13);
+    /*border: 2px solid rgb(13, 221, 13);*/
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -120,8 +120,8 @@ h2{
     align-self: center;
 }
 
-.category1{
-    border: 2px solid rgb(236, 170, 27);
+.category1, .category2, .category3, .category4{
+    /*border: 2px solid rgb(236, 170, 27);*/
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -129,18 +129,11 @@ h2{
     overflow:  hidden;
 }
 
-.category{
-    border: 2px solid rgb(236, 170, 27);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    overflow:  hidden;
-}
+
 
 .slider{
     width: 90%;
-    border: 2px solid rgb(251, 13, 179);
+    /*border: 2px solid rgb(251, 13, 179);*/
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -153,12 +146,8 @@ img.active{
     display: block;
 }
 
-img.inactive{
-    display: none;
-}
-
 .nav-gauche, .nav-droite{
-    border: 2px solid #444;
+    /*border: 2px solid #444;*/
     display: block;
 }
 
@@ -183,7 +172,7 @@ img.inactive{
     }
 }
 
-@media all and (max-width: 536px){
+@media all and (max-width: 536px) /*and (min-width: 300px)*/{
     header{
         flex-wrap: wrap;
         padding: 20px;
