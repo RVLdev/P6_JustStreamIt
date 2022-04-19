@@ -147,7 +147,6 @@ img.active{
 }
 
 .nav-gauche, .nav-droite{
-    /*border: 2px solid #444;*/
     display: block;
 }
 
@@ -172,7 +171,7 @@ img.active{
     }
 }
 
-@media all and (max-width: 536px) /*and (min-width: 300px)*/{
+@media all and (max-width: 536px){
     header{
         flex-wrap: wrap;
         padding: 20px;
