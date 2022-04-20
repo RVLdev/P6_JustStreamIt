@@ -1,10 +1,4 @@
-
-// FENETRE MODALE
-//Fenetre modale du Meilleur Film
-
-let BestFilmDetails; //liste des détails à récupérer via API => dictionnaire
-
-// Cas d'1 Film pour tests
+// Cas pour tests : Meilleur Film = 'film1'
 let film1 = {
     "title": "The Fantasticks", 
     "date_published": "2000-09-22", 
@@ -26,8 +20,27 @@ let film1 = {
     "rated": "PG"
 }
 
-// Détails du film : variables
 
+//Alimentation bloc conteneur "Meilleur Film" avec infos du film (exple: film1)
+let bestFilmCategoryFilmTitle = document.querySelector('#best_film_description > h1');
+bestFilmCategoryFilmTitle.textContent = film1["title"];
+
+let bestFilmCategoryFilmResume = document.querySelector('#best_film_description > p');
+bestFilmCategoryFilmResume.textContent = film1["description"];
+
+let bestFilmCategoryFilmThumbnail = document.querySelector('.best_film_thumbnail > img');
+let bestFilmCategoryFilmImage = bestFilmCategoryFilmThumbnail.getAttribute("src");
+//bestFilmCategoryFilmImage.setAttribute("src", film1["image_url"]);  //PB 'not a fucntion'
+
+
+// FENETRES MODALES
+
+// 1 Fenetre modale du Meilleur Film
+
+
+/* Détaille le contenu rédactionnel de la fenêtre modale (variables)
+(en vue alimentation/remplacement par les infos du film) 
+*/
 let modalFilmImage = document.querySelector('.modal-body > ul > img');
 let bestFilmImage = modalFilmImage.getAttribute("src");
 
@@ -45,13 +58,13 @@ let bestFilmCountries = modalFilmDetails[0].getElementsByClassName("countries");
 let bestFilmRated = modalFilmDetails[0].getElementsByClassName("rated");
 
 
-// Structure fenetre modale : constantes
+// Structure, éléments fonctionnels de la fenêtre modale (constantes)
 const buttonFilmDetails = document.getElementsByClassName("bouton_details");
 const modalElement = document.getElementById("modal1");
 const closingCross = document.getElementsByClassName("close");
 
 
-// affiche la fenêtre modale qd clique sur bouton "Détails"
+// Affiche la fenêtre modale qd clique sur bouton "Détails du film"
 buttonFilmDetails[0].addEventListener('click', function(){
     modalElement.style.display = "flex";
 });
@@ -61,13 +74,14 @@ closingCross[0].addEventListener('click', function(){
     modalElement.style.display = "none";
 });
 
-// Remplacemnt infos contenues ds modale --> EN COURS
-modalFilmImage.setAttribute("src", film1["image_url"]);
-console.log(modalFilmImage);
 
-// remplacement texte d'un élément du DOM (ex. bestFilmTitle[0]) par une autre chaîne de caractères (.textContent)
+// Alimentation de la fenêtre modale : image du Meilleur Film
+modalFilmImage.setAttribute("src", film1["image_url"]);
+
+// Alimentation de la fenêtre modale : informations du Meilleur Film
+// remplacement, dans le DOM, du texte existant par les informations du film
 bestFilmTitle[0].textContent = "Titre : "+film1["title"];
-bestFilmDate[0].textContent = "Date de sortie : "+film1["date_published"];  //Format date A REVOIR
+bestFilmDate[0].textContent = "Date de sortie : "+film1["date_published"];  //Format date A REVOIR ?
 bestFilmDuration[0].textContent = "Durée (min) : "+film1["duration"];
 bestFilmLongDescription[0].textContent = "Résumé : "+film1["long_description"];
 bestFilmImbd[0].textContent = "Score Imbd : "+film1["imdb_score"];
@@ -80,7 +94,7 @@ bestFilmRated[0].textContent = "rated"+film1["rated"];
 
 
 // CARROUSELS
-//AvailableThumbnails pour les 4 carrousels 
+//Réserve de vignettes à faire défiler(AvailableThumbnails) pour les 4 carrousels 
 let imagesBestFilms = ["pictures/image1.jpg", "pictures/image2.jpg", 
                         "pictures/image3.jpg", "pictures/image4.jpg", 
                         "pictures/image5.jpg", "pictures/image6.jpg", 
@@ -101,7 +115,7 @@ let imagesBiography = ["pictures/imageA.jpg", "pictures/imageB.jpg",
                         "pictures/imageE.jpg", "pictures/imageF.jpg", 
                         "pictures/imageG.jpg"];
 
-//activeThumbnails des 4 sliders
+//listes des 4 vignettes 'actives' (activeThumbnails) des 4 sliders
 /*
 category1 -> BestFilms
 category2 -> Aventure
@@ -195,7 +209,7 @@ let BiographySlider = new Slider(activePicSlider4,
                         count4);
 
 
-// boutons précédent/suivant 1
+// détection de clic sur boutons précédent/suivant 1 et lancement réaction
 bestFilmsSlider.previousThumbnail.addEventListener('click', function(){
     bestFilmsSlider.count--;
     bestFilmsSlider.UpdatingCount(this.count);
@@ -208,7 +222,7 @@ bestFilmsSlider.nextThumbnail.addEventListener('click', function(){
     bestFilmsSlider.changeThumbnail(this.activeThumbnails, this.availableThumbnails, this.count);
 });
 
-// boutons précédent/suivant 2
+// détection de clic sur boutons précédent/suivant 2 et lancement réaction
 AdventureSlider.previousThumbnail.addEventListener('click', function(){
     AdventureSlider.count--;
     AdventureSlider.UpdatingCount(this.count);
@@ -221,7 +235,7 @@ AdventureSlider.nextThumbnail.addEventListener('click', function(){
     AdventureSlider.changeThumbnail(this.activeThumbnails, this.availableThumbnails, this.count);
 });
 
-// boutons précédent/suivant 3
+// détection de clic sur boutons précédent/suivant 3 et lancement réaction
 AnimationSlider.previousThumbnail.addEventListener('click', function(){
     AnimationSlider.count--;
     AnimationSlider.UpdatingCount(this.count);
@@ -234,7 +248,7 @@ AnimationSlider.nextThumbnail.addEventListener('click', function(){
     AnimationSlider.changeThumbnail(this.activeThumbnails, this.availableThumbnails, this.count);
 });
 
-// boutons précédent/suivant 4
+// détection de clic sur boutons précédent/suivant 4 et lancement réaction
 BiographySlider.previousThumbnail.addEventListener('click', function(){
     BiographySlider.count--;
     BiographySlider.UpdatingCount(this.count);
