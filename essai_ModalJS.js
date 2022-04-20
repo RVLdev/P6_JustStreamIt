@@ -2,15 +2,54 @@
 // FENETRE MODALE
 //Fenetre modale du Meilleur Film
 
-let BestFilmDetails; //détails à récupérer via API
+let BestFilmDetails; //liste des détails à récupérer via API => dictionnaire
 
+// Cas d'1 Film pour tests
+let film1 = {
+    "title": "The Fantasticks", 
+    "date_published": "2000-09-22", 
+    "duration": 86, 
+    "description": "A mysterious fair that comes to a small community in the countryside could make real the illusions of two teenagers.", 
+    "long_description": "Two teenagers on neighboring farms steal glances and hide their romance from their feuding fathers. However, the fathers are actually good friends who have hatched a plan--with help from a mystical roving sideshow and its equally-mysterious ringmaster--to get the two lovebirds down the aisle. But in order to bring these families together, they must first be torn apart.", 
+    "avg_vote": "5.6", 
+    "imdb_score": "5.6", 
+    "worldwide_gross_income": 49666, 
+    "image_url": "https://m.media-amazon.com/images/M/MV5BMjIyMDE0NzY1M15BMl5BanBnXkFtZTgwOTgzMzgwMzE@._V1_UX182_CR0,0,182,268_AL_.jpg", 
+    "actors": ["Arturo Gil", "Barnard Hughes", "Brad Sullivan", "Dyrk Ashton",
+                "Gregory Amato", "Jean Louisa Kelly", "Joel Grey", 
+                "Joey McIntyre", "Jonathon Morris", "Lee Bell", 
+                "Shaunery Stevens", "Teller", "Tony Cox", "Trayne Thomas", 
+                "Victoria Stevens"], 
+    "directors": ["Michael Ritchie"], 
+    "genres": ["Musical", "Romance"], 
+    "countries": ["USA"], 
+    "rated": "PG"
+}
+
+// Détails du film : variables
+
+let modalFilmImage = document.querySelector('.modal-body > ul > img');
+let bestFilmImage = modalFilmImage.getAttribute("src");
+
+let modalFilmDetails = document.getElementsByClassName("modal-body");
+let bestFilmTitle = modalFilmDetails[0].getElementsByClassName("title");
+let bestFilmDate = modalFilmDetails[0].getElementsByClassName("date_published");
+let bestFilmDuration = modalFilmDetails[0].getElementsByClassName("duration");
+let bestFilmLongDescription = modalFilmDetails[0].getElementsByClassName("long_description");
+let bestFilmImbd = modalFilmDetails[0].getElementsByClassName("imbd_score");
+let bestFilmBoxOffice = modalFilmDetails[0].getElementsByClassName("worldwclasse_gross_income");
+let bestFilmActors = modalFilmDetails[0].getElementsByClassName("actors");
+let bestFilmDirectors = modalFilmDetails[0].getElementsByClassName("directors");
+let bestFilmGenres = modalFilmDetails[0].getElementsByClassName("genres");
+let bestFilmCountries = modalFilmDetails[0].getElementsByClassName("countries");
+let bestFilmRated = modalFilmDetails[0].getElementsByClassName("rated");
+
+
+// Structure fenetre modale : constantes
 const buttonFilmDetails = document.getElementsByClassName("bouton_details");
-console.log(buttonFilmDetails);
-
 const modalElement = document.getElementById("modal1");
-
 const closingCross = document.getElementsByClassName("close");
-console.log(closingCross);
+
 
 // affiche la fenêtre modale qd clique sur bouton "Détails"
 buttonFilmDetails[0].addEventListener('click', function(){
@@ -21,6 +60,24 @@ buttonFilmDetails[0].addEventListener('click', function(){
 closingCross[0].addEventListener('click', function(){
     modalElement.style.display = "none";
 });
+
+// Remplacemnt infos contenues ds modale --> EN COURS
+modalFilmImage.setAttribute("src", film1["image_url"]);
+console.log(modalFilmImage);
+
+// remplacement texte d'un élément du DOM (ex. bestFilmTitle[0]) par une autre chaîne de caractères (.textContent)
+bestFilmTitle[0].textContent = "Titre : "+film1["title"];
+bestFilmDate[0].textContent = "Date de sortie : "+film1["date_published"];  //Format date A REVOIR
+bestFilmDuration[0].textContent = "Durée (min) : "+film1["duration"];
+bestFilmLongDescription[0].textContent = "Résumé : "+film1["long_description"];
+bestFilmImbd[0].textContent = "Score Imbd : "+film1["imdb_score"];
+bestFilmBoxOffice[0].textContent = "Box Office : "+film1["worldwide_gross_income"];
+bestFilmActors[0].textContent = "Acteurs : "+film1["actors"];
+bestFilmDirectors[0].textContent = "Réalisateur(s) : "+film1["directors"];
+bestFilmGenres[0].textContent = "Genre(s) : "+film1["genres"];
+bestFilmCountries[0].textContent = "Pays d'origine : "+film1["countries"];
+bestFilmRated[0].textContent = "rated"+film1["rated"];
+
 
 // CARROUSELS
 //AvailableThumbnails pour les 4 carrousels 
@@ -82,7 +139,6 @@ class Slider{
         this.previousThumbnail = previousThumbnail;
         this.count = count;
     }
-    
 
     UpdatingCount(){
         if(this.count > 3){
@@ -156,7 +212,6 @@ bestFilmsSlider.nextThumbnail.addEventListener('click', function(){
 AdventureSlider.previousThumbnail.addEventListener('click', function(){
     AdventureSlider.count--;
     AdventureSlider.UpdatingCount(this.count);
-
     AdventureSlider.changeThumbnail(this.activeThumbnails, this.availableThumbnails, this.count);
 });
 

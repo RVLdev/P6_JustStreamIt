@@ -2,7 +2,7 @@
 <html lang="fr">
 	<head>
 		<meta charset="utf-8" />
-		<title>essai_SliderHTML</title>
+		<title>essai_ModalHTML</title>
         <link rel="stylesheet" href="essai_ModalCSS.css">
         <link href="http://fonts.cdnfonts.com/css/seaford" rel="stylesheet">
         <style>@import url('http://fonts.cdnfonts.com/css/seaford');</style>
@@ -34,30 +34,31 @@
                 <aside id="modal1" class="modal">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <div class="close">x</div>
+                            <div class="close">X</div>
                             <h1>Catégorie : Meilleur Film</h1>
                         </div>
                         <div class="modal-body">
                             <ul>
                                 <img src="pictures/image1_test.jpg" class="floatingpic"alt="affiche du meilleur film"/>
-                                <li><strong>titre</strong>: "The Fantasticks"</li>
-                                <li>date de sortie: "2000-09-22"</li>
-                                <li>durée: 86</li>
-                                <li>résumé: "Two teenagers on neighboring farms steal glances and hide their romance from their feuding fathers. However, the fathers are actually good friends who have hatched a plan--with help from a mystical roving sideshow and its equally-mysterious ringmaster--to get the two lovebirds down the aisle. But in order to bring these families together, they must first be torn apart."
-                                </li>
-                                <li>score imdb: 5.6</li>
-                                <li>Box Office (worldwide_gross_income): 49666</li>
-                                <li>acteurs: Arturo Gil, Barnard Hughes, Brad Sullivan</li>
-                                <li>réalisateur: Michael Ritchie</li>
-                                <li>genres: "Musical", "Romance"</li>
-                                <li>pays d'origine: "USA"</li>
-                                <li>"rated": "PG"</li>
+                                <li class="title">Titre du film</li>
+                                <li class="date_published">Date de sortie</li>
+                                <li class="duration">Durée</li>
+                                <li class="long_description">Résumé long</li>
+                                <li class="imbd_score">Score imdb</li>
+                                <li class="worldwclasse_gross_income">Box Office</li>
+                                <li class="actors">Acteurs</li>
+                                <li class="directors">Réalisateur(s)</li>
+                                <li class="genres">Genres</li>
+                                <li class="countries">Pays d'origine</li>
+                                <li class="rated">"Rated"</li>
                             </ul>
                         </div>
                     </div>
                 </aside>
 
-                <p> Résumé du film (309 caractères): à récuper via API Bla blabla bla blablabla. 
+                <p> Résumé du film (428 caractères): à récuper via API Bla blabla bla blablabla. 
+                    "A mysterious fair that comes to a small community in the countryside could make 
+                    real the illusions of two teenagers."
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil sed molestiae 
                     quisquam aliquid, sequi facilis excepturi, vitae deleniti aperiam iure adipisci 
                     ullam sapiente minus labore possimus placeat autem cupiditate consectetur?</p>

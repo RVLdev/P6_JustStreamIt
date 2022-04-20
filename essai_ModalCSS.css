@@ -52,7 +52,6 @@ nav li{
 }
 nav a{
     color: #FFF;
-
     text-decoration: none;
 }
 
@@ -103,17 +102,20 @@ p{
 /* fenetre modale Meilleur Film */
 .modal {
     position: fixed;
-    display: none; /*none -> car masquée par défaut*/
+    margin-left: 8px;
+    display: none; /* none -> car masquée par défaut*/
     align-items: center;
     justify-content: center;
-    width: 80%;
+    width: 95%;
+
     overflow: auto;
     background: rgba(95, 94, 94, 0.6);
 }
 
+
 .modal-content {
     width: 100%;
-    padding: 20px;
+    padding: 10px 20px 10px 20px;
     background-color: rgb(195, 187, 187);
     border: 1px solid black;
     
@@ -122,17 +124,25 @@ p{
     float: inline-start;
     border: 1px solid black;
     margin-right: 20px;
+    margin-bottom: 15px;
+}
+
+
+.modal-body .title{
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
 .close {
     color: red;
     float: right;
-    font-size: 2em;
-    font-weight: bold;
+    font-size: 1.5em;
+    /*font-weight: bold;*/
 }
 
 .close:hover, .close:focus {
     color: black;
+    text-decoration: underline;
     cursor: pointer;
 }
 
