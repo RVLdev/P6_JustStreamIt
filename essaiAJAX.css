@@ -121,6 +121,11 @@ p{
     border: 1px solid black;
     
 }
+
+.no_list{
+    list-style-type: none;
+}
+
 .floatingpic{
     float: inline-start;
     border: 1px solid black;

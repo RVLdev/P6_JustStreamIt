@@ -1,6 +1,4 @@
-// API
-
-let httpRequest = new XMLHttpRequest();
+// variables : utilité à vérifier
 
 let bestFilmTitle;
 let bestFilmImageUrl;
@@ -16,86 +14,8 @@ let bestFilmGenres;
 let bestFilmCountries;
 let bestFilmRated;
 
-//REQUETES API
 
-//requête meilleurs films récents
-httpRequest.open('GET', 'http://localhost:8000/api/v1/titles/?format=json&sort_by=imdb_score,-year', true);
-httpRequest.send(); //OK
-console.log(httpRequest.status);
-/*
-//requête catégorie Aventure
-httpRequest.open('GET', 'http://localhost:8000/api/v1/titles/?genre=Advendure&sort_by=imdb_score,-year', true);
-httpRequest.send();
-//requête catégorie Animation
-httpRequest.open('GET', 'http://localhost:8000/api/v1/titles/?genre=Animation&sort_by=imdb_score,-year', true);
-httpRequest.send();
-//requête catégorie Biographie
-httpRequest.open('GET', 'http://localhost:8000/api/v1/titles/?genre=Biography&sort_by=imdb_score,-year', true);
-httpRequest.send();
-*/
-
-
-
-//attente réponse et traitement réponse
-httpRequest.onreadystatechange = function (){
-	console.log(httpRequest.readyState);
-    setTimeout(500, console.log(httpRequest.responseText));
-};
-
-
-/*
-function dataProcess() {
-    if(httpRequest.readyState === 4){
-        if (httpRequest.status === 200) {
-            //affiche la réponse sous forme d'un tableau d'objets
-            let filmsList = JSON.parse(httpRequest.responseText);
-            console.log(filmsList);
-            bestFilmTitle = filmsList.results[0].title;
-            bestFilmImageUrl = filmsList.results[0].image_url;
-            console.log(bestFilmImageUrl);
-
-            bestFilmDescription = filmsList.results[0].description;
-            bestFilmDate = filmsList.results[0].date_published; // + mise en forme DATE à faire
-            bestFilmDuration = filmsList.results[0].duration;
-            bestFilmLongDescription = filmsList.results[0].long_description;
-            bestFilmImbd = filmsList.results[0].imdb_score;
-            bestFilmBoxOffice = filmsList.results[0].worldwide_gross_income;
-            bestFilmActors = filmsList.results[0].actors; // + mise en forme (espaces) à faire
-            bestFilmDirectors = filmsList.results[0].directors; // + mise en forme (espaces) à faire ???
-            bestFilmGenres = filmsList.results[0].genres;
-            bestFilmCountries = filmsList.results[0].countries;
-            bestFilmRated = filmsList.results[0].rated;
-        } else { console.log('PB de connexion avec le Serveur - status: '+httpRequest.status);
-        }
-    } else {console.log('ReadyState = '+httpRequest.readyState+'chargement en cours...');
-    }
-}
-9*/
-
-//affiche la réponse sous forme d'un tableau d'objets
-
-let filmsList = JSON.parse(httpRequest.responseText);
-console.log(filmsList);
-bestFilmTitle = filmsList.results[0].title;
-bestFilmImageUrl = filmsList.results[0].image_url;
-console.log(bestFilmImageUrl);
-
-bestFilmDescription = filmsList.results[0].description;
-bestFilmDate = filmsList.results[0].date_published; // + mise en forme DATE à faire
-bestFilmDuration = filmsList.results[0].duration;
-bestFilmLongDescription = filmsList.results[0].long_description;
-bestFilmImbd = filmsList.results[0].imdb_score;
-bestFilmBoxOffice = filmsList.results[0].worldwide_gross_income;
-bestFilmActors = filmsList.results[0].actors; // + mise en forme (espaces) à faire
-bestFilmDirectors = filmsList.results[0].directors; // + mise en forme (espaces) à faire ???
-bestFilmGenres = filmsList.results[0].genres;
-bestFilmCountries = filmsList.results[0].countries;
-bestFilmRated = filmsList.results[0].rated;
-
-
-
-
-// Cas pour tests : Meilleur Film = 'film1'
+// Exemple pour tests : Meilleur Film = 'film1' ------------A SUPPRIMER-------------------
 let film1 = {
     "title": "The Fantasticks", 
     "date_published": "2000-09-22", 
@@ -117,72 +37,123 @@ let film1 = {
     "rated": "PG"
 };
 
+//API - MEILLEUR FILM (classement imdb) v 27 04
+let bestFilmsList = [];
+let bestFilmUrl;
+let detailedFilmsList = [];
 
-//Alimentation BLOC CONTENEUR "Meilleur Film" avec infos du film (exple: film1)
-let bestFilmCategoryFilmTitle = document.querySelector('#best_film_description > h1');
-bestFilmCategoryFilmTitle.textContent = "Meilleur film : "+bestFilmTitle; //version API
-console.log(bestFilmCategoryFilmTitle); //PB undefined
 
-let bestFilmCategoryFilmResume = document.querySelector('#best_film_description > p');
-bestFilmCategoryFilmResume.textContent = bestFilmDescription; // version API
+getBestFilmUrl();
 
-let bestFilmThumbnail = document.querySelector('.best_film_thumbnail > img'); //22/04 remplacmt 'bestFilmCategoryFilmThumbnail' par 'bestFilmThumbnail'
-console.log(bestFilmThumbnail);  //ok
-console.log(bestFilmImageUrl);   //PB undefined
-//let bestFilmImageUrl = filmsList.results[0].image_url
-bestFilmThumbnail.setAttribute("src", bestFilmImageUrl); //PB !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+function getBestFilmUrl(){
+    let httpRequest = new XMLHttpRequest();
+    httpRequest.open('GET', "http://localhost:8000/api/v1/titles/?format=json&sort_by=imdb_score,-year", true);
+    httpRequest.send();
+    httpRequest.onreadystatechange = function(){
+        if(httpRequest.readyState === 4){
+            if (httpRequest.status === 200) {
+                bestFilmsList = JSON.parse(httpRequest.responseText);
+                console.log(bestFilmsList);
+                bestFilmUrl =bestFilmsList.results[0].url;
+                console.log(bestFilmUrl);
+                getBestFilmDetails(bestFilmUrl);
+            }
+        }
+    };
+}
+
+function getBestFilmDetails(bestFilmUrl){
+    let httpRequest = new XMLHttpRequest();
+    httpRequest.open('GET', bestFilmUrl, true);
+    httpRequest.send();
+    httpRequest.onreadystatechange = function(){
+        if(httpRequest.readyState === 4){
+            if (httpRequest.status === 200) {
+                let detailedFilm = JSON.parse(httpRequest.responseText);
+                console.log(detailedFilm);
+                getBestFilmTitle(detailedFilm)
+            }
+        }
+    };
+}
+
+//Alimentation BLOC CONTENEUR "Meilleur Film" v 27 04
+function getBestFilmTitle(detailedFilm){
+    let bestFilmCategoryFilmTitle = document.querySelector('#best_film_description > h1');
+    bestFilmCategoryFilmTitle.textContent = "Meilleur film : "+detailedFilm.title;
+    console.log(bestFilmCategoryFilmTitle.textContent);
+    getBestFilmTitleResume(detailedFilm);
+}
+
+function getBestFilmTitleResume(detailedFilm){
+    let bestFilmCategoryFilmResume = document.querySelector('#best_film_description > p');
+    bestFilmCategoryFilmResume.textContent = detailedFilm.description;
+    console.log(bestFilmCategoryFilmResume.textContent);
+    getBestFilmThumbnail(detailedFilm);
+}
+
+function getBestFilmThumbnail(detailedFilm){
+    let bestFilmThumbnail = document.querySelector('.best_film_thumbnail > img');
+    bestFilmThumbnail.setAttribute("src", detailedFilm.image_url);
+}
+
+//Alimentation MODALE "Meilleur Film" - élaboration en cours v 27 04
+
+function getModalBestFilmDetails(detailedFilm){
+    let modalFilmDetails = document.getElementsByClassName("modal-body");
+    console.log(detailedFilm);
+    modalFilmDetails[0].getElementsByClassName("title").innerText = detailedFilm.description;
+    let modalFilmImage = document.querySelector('.modal-body > ul > li .floatingpic');
+    console.log(modalFilmImage);
+    modalFilmImage.setAttribute("src", detailedFilm.image_url);
+}
+
 
 
 
 // FENETRES MODALES
 
-// 1 Fenetre modale du MEILLEUR FILM
-
-
-
-// identifie les champs ds MODALE et REMPLACE leurs contenus
+// 1 Fenetre modale du MEILLEUR FILM - ALIMENTATION via données API : EN COURS
 
 // Vignette
 let modalFilmImage = document.querySelector('.modal-body > ul > img');
-//let bestFilmImage = modalFilmImage.getAttribute("src");
-//modalFilmImage.setAttribute("src", film1["image_url"]);// Alimentation de la fenêtre modale : image du Meilleur Film1 
 modalFilmImage.setAttribute("src", bestFilmImageUrl); // version API
 
 
 // champs textuels
 let modalFilmDetails = document.getElementsByClassName("modal-body");
 
-//let bestFilmTitle = modalFilmDetails[0].getElementsByClassName("title"); // version "film1" - identifie le champ ds modale
+//Title 
 modalFilmDetails[0].getElementsByClassName("title").innerText = bestFilmTitle; // version API - identifie le champs ds modale et remplace contenu
 
-//let bestFilmDate = modalFilmDetails[0].getElementsByClassName("date_published"); // version "film1"
+//Date
 modalFilmDetails[0].getElementsByClassName("date_published").innerText = bestFilmDate; // version API 
 
-//let bestFilmDuration = modalFilmDetails[0].getElementsByClassName("duration"); // version "film1"
+//Duration
 modalFilmDetails[0].getElementsByClassName("duration").innerText = bestFilmDuration; // version API 
 
-//let bestFilmLongDescription = modalFilmDetails[0].getElementsByClassName("long_description"); // version "film1"
+//LongDescription
 modalFilmDetails[0].getElementsByClassName("long_description").innerText = bestFilmLongDescription; // version API
 
-//let bestFilmImbd = modalFilmDetails[0].getElementsByClassName("imbd_score"); // version "film1"
+//Imbd 
 modalFilmDetails[0].getElementsByClassName("imbd_score").innerText = bestFilmImbd; // version API
 
-//let bestFilmBoxOffice = modalFilmDetails[0].getElementsByClassName("worldwclasse_gross_income"); // version "film1"
+//FilmBoxOffice 
 modalFilmDetails[0].getElementsByClassName("worldwclasse_gross_income").innerText = bestFilmBoxOffice; // version API
 
-//let bestFilmActors = modalFilmDetails[0].getElementsByClassName("actors"); // version "film1"
+//Actors 
 modalFilmDetails[0].getElementsByClassName("actors").innerText = bestFilmActors; // version API
 
-//let bestFilmDirectors = modalFilmDetails[0].getElementsByClassName("directors"); // version "film1"
+//Directors 
 modalFilmDetails[0].getElementsByClassName("directors").innerText = bestFilmDirectors; // version API
 
-//let bestFilmGenres = modalFilmDetails[0].getElementsByClassName("genres"); // version "film1"
+//Genres 
 modalFilmDetails[0].getElementsByClassName("genres").innerText = bestFilmGenres; // version API
 
-//let bestFilmCountries = modalFilmDetails[0].getElementsByClassName("countries"); // version "film1"
+//Countries
 modalFilmDetails[0].getElementsByClassName("countries").innerText = bestFilmCountries; // version API
 
-//let bestFilmRated = modalFilmDetails[0].getElementsByClassName("rated"); // version "film1"
+//Rated
 modalFilmDetails[0].getElementsByClassName("rated").innerText = bestFilmRated; // version API
 
 
@@ -193,25 +164,10 @@ const modalElement = document.getElementById("modal1");
 const closingCross = document.getElementsByClassName("close");
 
 
-
-// Alimentation de la fenêtre modale : informations du Meilleur Film - SOURCE: "FILM1"
-/* remplacement, dans le DOM, du texte existant par les informations de "film1"
-bestFilmTitle[0].textContent = "Titre : "+film1["title"];
-bestFilmDate[0].textContent = "Date de sortie : "+film1["date_published"];  //Format date A REVOIR ?
-bestFilmDuration[0].textContent = "Durée (min) : "+film1["duration"];
-bestFilmLongDescription[0].textContent = "Résumé : "+film1["long_description"];
-bestFilmImbd[0].textContent = "Score Imbd : "+film1["imdb_score"];
-bestFilmBoxOffice[0].textContent = "Box Office : "+film1["worldwide_gross_income"];
-bestFilmActors[0].textContent = "Acteurs : "+film1["actors"];
-bestFilmDirectors[0].textContent = "Réalisateur(s) : "+film1["directors"];
-bestFilmGenres[0].textContent = "Genre(s) : "+film1["genres"];
-bestFilmCountries[0].textContent = "Pays d'origine : "+film1["countries"];
-bestFilmRated[0].textContent = "rated"+film1["rated"];
-*/
-
-// Affiche la fenêtre modale qd clique sur bouton "Détails du film"
+// Affiche la fenêtre modale qd clique sur bouton "Détails du film" -- A POURSUIVRE v27 04
 buttonFilmDetails[0].addEventListener('click', function(){
     modalElement.style.display = "flex";
+    getModalBestFilmDetails(detailedFilm);
 });
 
 // Ferme la fenêtre modale qd clique sur la croix
