@@ -37,13 +37,14 @@ let film1 = {
     "rated": "PG"
 };
 
-//API - MEILLEUR FILM (classement imdb) v 27 04
+// ----- 1 API - MEILLEUR FILM (classement imdb) -----
 let bestFilmsList = [];
 let bestFilmUrl;
-let detailedFilmsList = [];
+let detailedbestFilmsList = [];
 
-
+// 1 Affiche le bloc "Meilleur Film"
 getBestFilmUrl();
+
 
 function getBestFilmUrl(){
     let httpRequest = new XMLHttpRequest();
@@ -53,9 +54,9 @@ function getBestFilmUrl(){
         if(httpRequest.readyState === 4){
             if (httpRequest.status === 200) {
                 bestFilmsList = JSON.parse(httpRequest.responseText);
-                console.log(bestFilmsList);
+                //console.log(bestFilmsList);
                 bestFilmUrl =bestFilmsList.results[0].url;
-                console.log(bestFilmUrl);
+                //console.log(bestFilmUrl);
                 getBestFilmDetails(bestFilmUrl);
             }
         }
@@ -70,95 +71,87 @@ function getBestFilmDetails(bestFilmUrl){
         if(httpRequest.readyState === 4){
             if (httpRequest.status === 200) {
                 let detailedFilm = JSON.parse(httpRequest.responseText);
-                console.log(detailedFilm);
+                //console.log(detailedFilm);
                 getBestFilmTitle(detailedFilm)
             }
         }
     };
 }
 
-//Alimentation BLOC CONTENEUR "Meilleur Film" v 27 04
+// 1 Alimentation BLOC CONTENEUR "Meilleur Film"
 function getBestFilmTitle(detailedFilm){
     let bestFilmCategoryFilmTitle = document.querySelector('#best_film_description > h1');
     bestFilmCategoryFilmTitle.textContent = "Meilleur film : "+detailedFilm.title;
-    console.log(bestFilmCategoryFilmTitle.textContent);
+    //console.log(bestFilmCategoryFilmTitle.textContent);
     getBestFilmTitleResume(detailedFilm);
 }
 
 function getBestFilmTitleResume(detailedFilm){
     let bestFilmCategoryFilmResume = document.querySelector('#best_film_description > p');
     bestFilmCategoryFilmResume.textContent = detailedFilm.description;
-    console.log(bestFilmCategoryFilmResume.textContent);
+    //console.log(bestFilmCategoryFilmResume.textContent);
     getBestFilmThumbnail(detailedFilm);
 }
 
 function getBestFilmThumbnail(detailedFilm){
     let bestFilmThumbnail = document.querySelector('.best_film_thumbnail > img');
     bestFilmThumbnail.setAttribute("src", detailedFilm.image_url);
+    getModalBestFilmDetails(detailedFilm);
 }
 
-//Alimentation MODALE "Meilleur Film" - élaboration en cours v 27 04
+// 1 Alimentation MODALE "Meilleur Film"
 
+// Convertit la date YYYY-MM-DD en DD MM YYYY
+function convertDate(detailedFilm){
+    let strDate = detailedFilm.date_published;
+    let splitedDate = strDate.split('-');
+    let formatedDate = splitedDate[2]+" "+splitedDate[1]+" "+splitedDate[0];
+    return formatedDate;
+}
+// Ajoute un espace entre les noms des acteurs
+function addSpaceBetweenActors(detailedFilm){
+    let rawList = detailedFilm.actors;
+    let formatedList = rawList.join(", ");
+    return formatedList;
+}
+// Ajoute un espace entre les noms des genres
+function addSpaceBetweenGenres(detailedFilm){
+    let rawList = detailedFilm.genres;
+    let formatedList = rawList.join(", ");
+    return formatedList;
+}
+// Affiche texte "Non communiqué" si valeur du Box Office = "null"
+function ifBoxOfficeNull(detailedFilm){
+    if (detailedFilm.worldwide_gross_income == null){
+        return "Non communiqué";
+    } else {
+        return detailedFilm.worldwide_gross_income;
+    }
+}
+// 1 Alimente les détails du Meilleur Film dans la fenêtre MODALE
 function getModalBestFilmDetails(detailedFilm){
     let modalFilmDetails = document.getElementsByClassName("modal-body");
-    console.log(detailedFilm);
-    modalFilmDetails[0].getElementsByClassName("title").innerText = detailedFilm.description;
+
+    (modalFilmDetails[0].getElementsByClassName("title"))[0].innerText = "Titre : "+detailedFilm.title;
+
     let modalFilmImage = document.querySelector('.modal-body > ul > li .floatingpic');
-    console.log(modalFilmImage);
     modalFilmImage.setAttribute("src", detailedFilm.image_url);
+    
+    (modalFilmDetails[0].getElementsByClassName("date_published"))[0].innerText = "Date de sortie : "+convertDate(detailedFilm);
+    (modalFilmDetails[0].getElementsByClassName("duration"))[0].innerText = "Durée (min) : "+detailedFilm.duration;
+    (modalFilmDetails[0].getElementsByClassName("long_description"))[0].innerText = "Résumé : "+detailedFilm.long_description;
+    (modalFilmDetails[0].getElementsByClassName("imbd_score"))[0].innerText = "Score Imbd : "+detailedFilm.imdb_score;
+    (modalFilmDetails[0].getElementsByClassName("worldwclasse_gross_income"))[0].innerText = "Box Office : "+ifBoxOfficeNull(detailedFilm);
+    (modalFilmDetails[0].getElementsByClassName("actors"))[0].innerText = "Acteurs : "+addSpaceBetweenActors(detailedFilm);
+    (modalFilmDetails[0].getElementsByClassName("directors"))[0].innerText = "Réalisateur(s) : "+detailedFilm.directors;
+    (modalFilmDetails[0].getElementsByClassName("genres"))[0].innerText = "Genre(s) : "+addSpaceBetweenGenres(detailedFilm);
+    (modalFilmDetails[0].getElementsByClassName("countries"))[0].innerText = "Pays d'origine : "+detailedFilm.countries;
+    (modalFilmDetails[0].getElementsByClassName("rated"))[0].innerText = "rated : "+detailedFilm.rated;
 }
 
+//  *** 1 Fenetre modale du MEILLEUR FILM ***
 
-
-
-// FENETRES MODALES
-
-// 1 Fenetre modale du MEILLEUR FILM - ALIMENTATION via données API : EN COURS
-
-// Vignette
-let modalFilmImage = document.querySelector('.modal-body > ul > img');
-modalFilmImage.setAttribute("src", bestFilmImageUrl); // version API
-
-
-// champs textuels
-let modalFilmDetails = document.getElementsByClassName("modal-body");
-
-//Title 
-modalFilmDetails[0].getElementsByClassName("title").innerText = bestFilmTitle; // version API - identifie le champs ds modale et remplace contenu
-
-//Date
-modalFilmDetails[0].getElementsByClassName("date_published").innerText = bestFilmDate; // version API 
-
-//Duration
-modalFilmDetails[0].getElementsByClassName("duration").innerText = bestFilmDuration; // version API 
-
-//LongDescription
-modalFilmDetails[0].getElementsByClassName("long_description").innerText = bestFilmLongDescription; // version API
-
-//Imbd 
-modalFilmDetails[0].getElementsByClassName("imbd_score").innerText = bestFilmImbd; // version API
-
-//FilmBoxOffice 
-modalFilmDetails[0].getElementsByClassName("worldwclasse_gross_income").innerText = bestFilmBoxOffice; // version API
-
-//Actors 
-modalFilmDetails[0].getElementsByClassName("actors").innerText = bestFilmActors; // version API
-
-//Directors 
-modalFilmDetails[0].getElementsByClassName("directors").innerText = bestFilmDirectors; // version API
-
-//Genres 
-modalFilmDetails[0].getElementsByClassName("genres").innerText = bestFilmGenres; // version API
-
-//Countries
-modalFilmDetails[0].getElementsByClassName("countries").innerText = bestFilmCountries; // version API
-
-//Rated
-modalFilmDetails[0].getElementsByClassName("rated").innerText = bestFilmRated; // version API
-
-
-
-// Structure, éléments fonctionnels de la fenêtre modale (constantes)
+// 1 Structure, éléments fonctionnels de la fenêtre modale (constantes)
 const buttonFilmDetails = document.getElementsByClassName("bouton_details");
 const modalElement = document.getElementById("modal1");
 const closingCross = document.getElementsByClassName("close");
@@ -167,12 +160,182 @@ const closingCross = document.getElementsByClassName("close");
 // Affiche la fenêtre modale qd clique sur bouton "Détails du film" -- A POURSUIVRE v27 04
 buttonFilmDetails[0].addEventListener('click', function(){
     modalElement.style.display = "flex";
-    getModalBestFilmDetails(detailedFilm);
 });
 
 // Ferme la fenêtre modale qd clique sur la croix
 closingCross[0].addEventListener('click', function(){
     modalElement.style.display = "none";
+});
+
+
+
+// ----- 2 API - FILMS lES MIEUX NOTES (classement "rated") -----
+let bestRatedfilmsList = [];
+let bestRatedFilmsImages = [];
+
+let activePicSlider1 = document.querySelectorAll('.category1 .slider .active'); 
+
+// 2 Récupération des 4 images pour carrousel "Films les mieux notés"
+
+function getBestRatedFilmsImages(){
+    let httpRequest = new XMLHttpRequest();
+    httpRequest.open('GET', "http://localhost:8000/api/v1/titles/?format=json&sort_by=rated,-year", true);
+    httpRequest.send();
+    httpRequest.onreadystatechange = function(){
+        if(httpRequest.readyState === 4){
+            if (httpRequest.status === 200) {
+                bestRatedfilmsList = JSON.parse(httpRequest.responseText);
+                console.log(bestRatedfilmsList);
+                for(let ratedFilm = 0; ratedFilm <5; ratedFilm++){
+                    bestRatedFilmsImages.push(bestRatedfilmsList.results[ratedFilm].image_url)
+                }
+                //console.log(bestRatedFilmsImages);
+                loadRatedFilmsSliderImages(bestRatedFilmsImages);
+            }
+        }
+    };
+}
+
+
+// 2 Chargement des 4 images ds Carrousel "Films les mieux notés"
+function loadRatedFilmsSliderImages(bestRatedFilmsImages){
+    //activePicSlider1 = document.querySelectorAll('.category1 .slider .active'); 
+    activePicSlider1[0].setAttribute("src", bestRatedFilmsImages[0]);
+    activePicSlider1[1].setAttribute("src", bestRatedFilmsImages[1]);
+    activePicSlider1[2].setAttribute("src", bestRatedFilmsImages[2]);
+    activePicSlider1[3].setAttribute("src", bestRatedFilmsImages[3]);
+    console.log('Les 4 images du Carrousel sont chargées');
+    createThumbnailModal();
+}
+
+// *** 2 Création fenêtre MODALE 1ère image Carrousel FILMS LES MIEUX NOTES ***
+
+function createThumbnailModal(){
+    //setThumbnailModalElements();
+    setThumbnailModalElementsAttributes();
+    buildThumbnailModal();
+}
+
+// 2.1 Création  éléments de la MODALE (1ère) image Carrousel FILMS LES MIEUX NOTES
+//function setThumbnailModalElements(){}
+let newModal = document.createElement('aside');
+let newModalContent = document.createElement('div');
+let newModalHeader = document.createElement('div');
+let modalClose = document.createElement('div');
+let modalH2= document.createElement('h2');
+let newModalBody = document.createElement('div');
+let modalUl = document.createElement('ul');
+let modalNoList = document.createElement('li');
+let modalImage = document.createElement('img');
+let modalTitle = document.createElement('li');
+let modalPublishedDate = document.createElement('li'); 
+let modalDuration = document.createElement('li');
+let modalLong_Desc = document.createElement('li');
+let modalImdbScore = document.createElement('li');
+let modalBoxOffice = document.createElement('li');
+let modalActors = document.createElement('li');
+let modalDirectors = document.createElement('li');
+let modalGenres = document.createElement('li');
+let modalCountries = document.createElement('li');
+let modalRated = document.createElement('li');
+
+
+// 2.2 ajout d'attributs aux éléménts de la MODALE (1ère image Carrousel FILMS LES MIEUX NOTES)
+function setThumbnailModalElementsAttributes(){
+    newModal.setAttribute('id', "modalBestRated");// utilité id ?
+    newModal.setAttribute('class', "modal");
+
+    newModalContent.setAttribute('class', "modal-content");
+
+    newModalHeader.setAttribute('class', "modal_header");
+
+    modalClose.setAttribute('class', "close");
+    modalClose.innerText = "X";
+
+    modalH2.innerText = "Catégorie : Films les mieux notés";
+
+    newModalBody.setAttribute('class', "modal-body");
+
+    modalNoList.setAttribute('class', "no_list");
+
+    modalImage.setAttribute('src', "pictures/image1_test.jpg"); //  src pr test => A supprimer et à rajouter ds partie 'alimentation API'
+    modalImage.setAttribute('class', "floatingpic");
+    modalImage.setAttribute('alt', "affiche film 1"); // changer n° du film pr chq vignette (film 1 à film 4)
+
+    modalTitle.setAttribute('class', "title");
+    modalTitle.innerText = "Titre du film";
+
+    modalPublishedDate.setAttribute('class', "date_published");
+    modalPublishedDate.innerText = "Date de sortie";
+
+    modalDuration.setAttribute('class', "duration");
+    modalDuration.innerText = "Durée";
+
+    modalLong_Desc.setAttribute('class', "long_description");
+    modalLong_Desc.innerText = "Résumé long";
+
+    modalImdbScore.setAttribute('class', "imbd_score");
+    modalImdbScore.innerText = "Score imdb";
+
+    modalBoxOffice.setAttribute('class', "worldwclasse_gross_income");
+    modalBoxOffice.innerText = "Box Office";
+
+
+    modalActors.setAttribute('class', "actors");
+    modalActors.innerText = "Acteurs";
+
+    modalDirectors.setAttribute('class', "directors");
+    modalDirectors.innerText = "Réalisateur(s)";
+
+    modalGenres.setAttribute('class', "genres");
+    modalGenres.innerText = "Genres";
+
+    modalCountries.setAttribute('class', "countries");
+    modalCountries.innerText = "Pays d'origine";
+
+    modalRated.setAttribute('class', "rated");
+    modalRated.innerText = '"Rated"';
+}
+
+// 2.3 élaboration de la structure de la modale (assemblage des pièces du puzzle)
+let category1Elements = document.getElementsByClassName("category1")
+let thumbnailsList = category1Elements[0].getElementsByClassName("thumbnail");
+let slidersList = category1Elements[0].getElementsByClassName("slider");
+
+function buildThumbnailModal(){
+    slidersList[0].insertBefore(newModal, thumbnailsList[0]); // emplacement de la MODALE
+    newModal.appendChild(newModalContent);
+    newModalContent.appendChild(newModalBody);
+    newModalContent.insertBefore(newModalHeader, newModalBody);
+    newModalHeader.appendChild(modalH2);
+    newModalHeader.insertBefore(modalClose, modalH2);
+    newModalBody.appendChild(modalUl);
+    modalUl.appendChild(modalRated);
+    modalUl.insertBefore(modalCountries, modalRated);
+    modalUl.insertBefore(modalGenres, modalCountries);
+    modalUl.insertBefore(modalDirectors, modalGenres);
+    modalUl.insertBefore(modalActors, modalDirectors);
+    modalUl.insertBefore(modalBoxOffice, modalActors);
+    modalUl.insertBefore(modalImdbScore, modalBoxOffice);
+    modalUl.insertBefore(modalLong_Desc, modalImdbScore);
+    modalUl.insertBefore(modalDuration, modalLong_Desc);
+    modalUl.insertBefore(modalPublishedDate, modalDuration);
+    modalUl.insertBefore(modalTitle, modalPublishedDate);
+    modalUl.insertBefore(modalNoList, modalTitle);
+    modalNoList.appendChild(modalImage);
+}
+
+getBestRatedFilmsImages(bestRatedfilmsList);
+
+// 2.4 Ouverture / fermeture de la modale
+//Affiche modale qd clique sur 1ère vignette du carrousel "Films les mieux notés"
+activePicSlider1[0].addEventListener('click', function(){
+    newModal.style.display = "flex";
+});
+
+// Ferme la fenêtre modale de la 1ère vignette qd clique sur la croix
+modalClose.addEventListener('click', function(){
+    newModal.style.display = "none";
 });
 
 
@@ -206,7 +369,7 @@ category2 -> Aventure
 category3 -> Animation
 category4 -> Biographie
 */
-let activePicSlider1 = document.querySelectorAll('.category1 .slider .active');
+//let activePicSlider1 =>>redéfini, avec API, plus haut
 let activePicSlider2 = document.querySelectorAll('.category2 .slider .active');
 let activePicSlider3 = document.querySelectorAll('.category3 .slider .active');
 let activePicSlider4 = document.querySelectorAll('.category4 .slider .active');
