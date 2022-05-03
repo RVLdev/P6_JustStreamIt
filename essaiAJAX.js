@@ -330,11 +330,14 @@ function buildThumbnailModal(){
 }
 
 // 2.4 Ouverture / fermeture de la modale
-//Affiche modale qd clique sur 1ère vignette du carrousel "Films les mieux notés"
-activePicSlider1[0].addEventListener('click', function(){
-    //d'abord alimenter modale avec infos image 1, puis afficher la modale
-    newModal.style.display = "flex";
-});
+//Affiche modale qd clique sur les vignettes du carrousel "Films les mieux notés"
+for(let PicIndex in [0, 1, 2, 3]){
+    activePicSlider1[PicIndex].addEventListener('click', function(){
+        var filmsListIndex = PicIndex;
+        getBestRatedFilmDetails(bestRatedfilmsList, filmsListIndex);
+        newModal.style.display = "flex";
+    });
+}
 
 // Ferme la fenêtre modale de la 1ère vignette qd clique sur la croix
 modalClose.addEventListener('click', function(){
