@@ -189,11 +189,14 @@ h2{
 img.active{
     border: 2px solid #444;
     display: block;
+    z-index: 0;
 }
 
 .nav-gauche, .nav-droite{
     display: block;
 }
+
+
 
 @media all and (max-width: 940px) and (min-width: 720px){
     .slider .thumbnail:nth-child(4) {
