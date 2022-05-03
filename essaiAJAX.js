@@ -168,15 +168,12 @@ closingCross[0].addEventListener('click', function(){
 });
 
 
-
 // ----- 2 API - FILMS lES MIEUX NOTES (classement "rated") -----
 let bestRatedfilmsList = [];
 let bestRatedFilmsImages = [];
-
 let activePicSlider1 = document.querySelectorAll('.category1 .slider .active'); 
 
-// 2 Récupération des 4 images pour carrousel "Films les mieux notés"
-
+// 2 Récupération des images pour carrousel "Films les mieux notés"
 function getBestRatedFilmsImages(){
     let httpRequest = new XMLHttpRequest();
     httpRequest.open('GET', "http://localhost:8000/api/v1/titles/?format=json&sort_by=rated,-year", true);
@@ -186,16 +183,23 @@ function getBestRatedFilmsImages(){
             if (httpRequest.status === 200) {
                 bestRatedfilmsList = JSON.parse(httpRequest.responseText);
                 console.log(bestRatedfilmsList);
-                for(let ratedFilm = 0; ratedFilm <5; ratedFilm++){
-                    bestRatedFilmsImages.push(bestRatedfilmsList.results[ratedFilm].image_url)
-                }
-                //console.log(bestRatedFilmsImages);
-                loadRatedFilmsSliderImages(bestRatedFilmsImages);
+                getBestRatedFilmsImages(bestRatedfilmsList);
+                getAvailableFilms(bestRatedFilmsImages);
+                getBestRatedFilmDetails(bestRatedfilmsList);
+                return bestRatedfilmsList;
             }
         }
     };
 }
 
+function getBestRatedFilmsImages(bestRatedfilmsList){
+    for(let ratedFilm = 0; ratedFilm < 5; ratedFilm++){
+        bestRatedFilmsImages.push(bestRatedfilmsList.results[ratedFilm].image_url);
+    }
+    console.log(bestRatedFilmsImages);
+    loadRatedFilmsSliderImages(bestRatedFilmsImages);
+    return bestRatedFilmsImages;
+}
 
 // 2 Chargement des 4 images ds Carrousel "Films les mieux notés"
 function loadRatedFilmsSliderImages(bestRatedFilmsImages){
@@ -325,11 +329,10 @@ function buildThumbnailModal(){
     modalNoList.appendChild(modalImage);
 }
 
-getBestRatedFilmsImages(bestRatedfilmsList);
-
 // 2.4 Ouverture / fermeture de la modale
 //Affiche modale qd clique sur 1ère vignette du carrousel "Films les mieux notés"
 activePicSlider1[0].addEventListener('click', function(){
+    //d'abord alimenter modale avec infos image 1, puis afficher la modale
     newModal.style.display = "flex";
 });
 
@@ -339,10 +342,49 @@ modalClose.addEventListener('click', function(){
 });
 
 
+// 2.5 alimentation modale 1ère image Carrousel FILMS LES MIEUX NOTES 
+
+function getBestRatedFilmDetails(bestRatedfilmsList){
+    let FilmUrl = bestRatedfilmsList.results[0].url;
+    let httpRequest = new XMLHttpRequest();
+    httpRequest.open('GET', FilmUrl, true);
+    httpRequest.send();
+    httpRequest.onreadystatechange = function(){
+        if(httpRequest.readyState === 4){
+            if (httpRequest.status === 200) {
+                let detailedFilm = JSON.parse(httpRequest.responseText);
+                console.log(detailedFilm);
+                getModalFilmDetails(detailedFilm);
+            }
+        }
+    };
+}
+function getModalFilmDetails(detailedFilm){
+    modalTitle.innerText = "Titre : "+detailedFilm.title;
+    modalImage.setAttribute('src', detailedFilm.image_url);
+    modalPublishedDate.innerText = "Date de sortie : "+convertDate(detailedFilm);
+    modalDuration.innerText = "Durée (min) : "+detailedFilm.duration;
+    modalLong_Desc.innerText = "Résumé : "+detailedFilm.long_description;
+    modalImdbScore.innerText = "Score Imbd : "+detailedFilm.imdb_score;
+    modalBoxOffice.innerText = "Box Office : "+ifBoxOfficeNull(detailedFilm);
+    modalActors.innerText = "Acteurs : "+addSpaceBetweenActors(detailedFilm);
+    modalDirectors.innerText = "Réalisateur(s) : "+detailedFilm.directors;
+    modalGenres.innerText = "Genre(s) : "+addSpaceBetweenGenres(detailedFilm);
+    modalCountries.innerText = "Pays d'origine : "+detailedFilm.countries;
+    modalRated.innerText = "rated : "+detailedFilm.rated;
+}
+
+// 2 RECUPERE LA LISTE DES FILMS DE LA CATEGORIE (ici 'Les Mieux Notés')
+getBestRatedfilmsList() ;
+
+
+
+
+
 
 // CARROUSELS
 //Réserve de vignettes à faire défiler(AvailableThumbnails) pour les 4 carrousels 
-let imagesBestFilms = ["pictures/image1.jpg", "pictures/image2.jpg", 
+/*let imagesBestRatedFilms = ["pictures/image1.jpg", "pictures/image2.jpg", 
                         "pictures/image3.jpg", "pictures/image4.jpg", 
                         "pictures/image5.jpg", "pictures/image6.jpg", 
                         "pictures/image7.jpg"];
@@ -361,6 +403,7 @@ let imagesBiography = ["pictures/imageA.jpg", "pictures/imageB.jpg",
                         "pictures/imageC.jpg", "pictures/imageD.jpg", 
                         "pictures/imageE.jpg", "pictures/imageF.jpg", 
                         "pictures/imageG.jpg"];
+*/
 
 //listes des 4 vignettes 'actives' (activeThumbnails) des 4 sliders
 /*
@@ -370,9 +413,32 @@ category3 -> Animation
 category4 -> Biographie
 */
 //let activePicSlider1 =>>redéfini, avec API, plus haut
-let activePicSlider2 = document.querySelectorAll('.category2 .slider .active');
+/*let activePicSlider2 = document.querySelectorAll('.category2 .slider .active');
 let activePicSlider3 = document.querySelectorAll('.category3 .slider .active');
-let activePicSlider4 = document.querySelectorAll('.category4 .slider .active');
+let activePicSlider4 = document.querySelectorAll('.category4 .slider .active');*/
+
+//vignettes à faire défiler(AvailableThumbnails) pour les 4 carrousels
+var imagesBestRatedFilms = [];
+
+function getAvailableFilms(bestRatedFilmsImages) {
+    let httpRequest = new XMLHttpRequest();
+    httpRequest.open('GET', "http://localhost:8000/api/v1/titles/?format=json&page=2&sort_by=rated,-year", true);
+    httpRequest.send();
+    httpRequest.onreadystatechange = function(){
+        if(httpRequest.readyState === 4){
+            if (httpRequest.status === 200) {
+                let SecondPageFilmsList = JSON.parse(httpRequest.responseText);
+                for(let ratedFilm = 0; ratedFilm < 2; ratedFilm++){
+                    imagesBestRatedFilms = bestRatedFilmsImages.push(SecondPageFilmsList.results[ratedFilm].image_url);
+                }
+                console.log(imagesBestRatedFilms);
+                return imagesBestRatedFilms;
+            }
+        }
+    } 
+}
+
+
 
 // boutons 'suivant' 'précédent'des 4 sliders
 let nextThumbnail1 = document.querySelector('.category1 .nav-droite > img');
@@ -429,12 +495,12 @@ class Slider{
 
 // création 1er slider (1ère instance de la classe Slider)
 let bestFilmsSlider = new Slider(activePicSlider1, 
-                        imagesBestFilms, 
+                        imagesBestRatedFilms, 
                         nextThumbnail1,
                         previousThumbnail1,
                         count1);
 
-// création 2e slider (2e instance de la classe Slider)
+/* création 2e slider (2e instance de la classe Slider)
 let AdventureSlider = new Slider(activePicSlider2, 
                         imagesAdventure, 
                         nextThumbnail2,
@@ -454,7 +520,7 @@ let BiographySlider = new Slider(activePicSlider4,
                         nextThumbnail4,
                         previousThumbnail4,
                         count4);
-
+*/
 
 // détection de clic sur boutons précédent/suivant 1 et lancement réaction
 bestFilmsSlider.previousThumbnail.addEventListener('click', function(){
@@ -468,7 +534,7 @@ bestFilmsSlider.nextThumbnail.addEventListener('click', function(){
     bestFilmsSlider.UpdatingCount(this.count);
     bestFilmsSlider.changeThumbnail(this.activeThumbnails, this.availableThumbnails, this.count);
 });
-
+/*
 // détection de clic sur boutons précédent/suivant 2 et lancement réaction
 AdventureSlider.previousThumbnail.addEventListener('click', function(){
     AdventureSlider.count--;
@@ -507,3 +573,4 @@ BiographySlider.nextThumbnail.addEventListener('click', function(){
     BiographySlider.UpdatingCount(this.count);
     BiographySlider.changeThumbnail(this.activeThumbnails, this.availableThumbnails, this.count);
 });
+*/
