@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>essaiFETCH</title>
+        <link rel="stylesheet" href="essaiFETCH.css">
+        <link href="http://fonts.cdnfonts.com/css/seaford" rel="stylesheet">
+        <style>@import url('http://fonts.cdnfonts.com/css/seaford');</style>
+
+	</head>
+    <body>
+        <!-- en-tête de la page avec le logo et le menu -->
+        <header> 
+                <div id="logo">
+                    <img src="pictures/Logo_p6.png" alt="Logo_JustStreamIt"/>
+                </div>
+                <nav>
+                    <ul>  <!-- menu-->
+                        <li><a href="#">Accueil</a></li>
+                        <li><a href="#">Catégories</a></li>
+                    </ul>
+                </nav>
+        </header>
+
+        <!-- Bannière pour meilleur film avec : nom decatégorie,
+        titre du film, bouton -> détails du film, résumé du film.
+        -->
+        <div id="best_film_banner">
+            <div id="best_film_description">
+                <h1>Meilleur Film</h1>
+                <div class="bouton_details"> Détails du film</div>
+
+                <!-- Fenêtre modale -->
+                <aside id="modal1" class="modal">
+                    <div class="modal-content">
+                        <div class="modal_header">
+                            <div class="close">X</div>
+                            <h2>Catégorie : Meilleur Film</h2> <!-- 26/4 h2 au lieu de h1 -->
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li class="no_list">
+                                    <img src="pictures/image1_test.jpg" class="floatingpic" 
+                                    alt="affiche du meilleur film"/>
+                                </li>
+                                <li class="title">Titre du film</li>
+                                <li class="date_published">Date de sortie</li>
+                                <li class="duration">Durée</li>
+                                <li class="long_description">Résumé long</li>
+                                <li class="imbd_score">Score imdb</li>
+                                <li class="worldwclasse_gross_income">Box Office</li>
+                                <li class="actors">Acteurs</li>
+                                <li class="directors">Réalisateur(s)</li>
+                                <li class="genres">Genres</li>
+                                <li class="countries">Pays d'origine</li>
+                                <li class="rated">"Rated"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+
+                <p>Résumé du film</p>
+            </div>
+
+            <div class="best_film_thumbnail">
+                <img src="pictures/image1_test.jpg" alt="affiche du meilleur film"/>
+            </div>
+        </div>
+
+        <!-- 4 sliders (1 par catégorie de films) -->
+        <section>
+            <div class="sous-section">
+                <h2 id="topRated"> Catégorie : Films les mieux notés</h2>
+                <div class="category1">
+                    <div class="nav-gauche">
+                        <img src="pictures/fleche-gauche-64.png" alt="flèche pour défilement vers la gauche" />
+                    </div>
+                    <div class="slider">
+                        <!-- INSERER ICI LA MODALE  <aside id="modal1" class="modal"></aside> -->
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/image1.jpg" alt="affiche film1"/>
+                        </div>
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/image2.jpg" alt="affiche film2"/>
+                        </div>
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/image3.jpg" alt="affiche film3"/>
+                        </div>
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/image4.jpg" alt="affiche film4"/>
+                        </div>
+                    </div>
+                    <div class="nav-droite">
+                        <img src="pictures/fleche-droite-64.png" alt="flèche pour défilement vers la droite" />
+                    </div>  
+                </div>
+            </div>
+
+            <div class="sous-section">
+                <h2 id="Aventure">Aventure</h2>    
+                <div class="category2">
+                    <div class="nav-gauche">
+                        <img src="pictures/fleche-gauche-64.png" alt="flèche pour défilement vers la gauche" />
+                    </div>
+                    <div class="slider">
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/imageA.jpg" alt="affiche film1"/>
+                        </div>
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/imageB.jpg" alt="affiche film2"/>
+                        </div>
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/imageC.jpg" alt="affiche film3"/>
+                        </div>
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/imageD.jpg" alt="affiche film4"/>
+                        </div>
+                    </div>
+                    <div class="nav-droite">
+                        <img src="pictures/fleche-droite-64.png" alt="flèche pour défilement vers la droite" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="sous-section">
+                <h2 id="Animation">Animation</h2>
+                <div class="category3">
+                    <div class="nav-gauche">
+                        <img src="pictures/fleche-gauche-64.png" alt="flèche pour défilement vers la gauche" />
+                    </div>
+                    <div class="slider">
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/image1.jpg" alt="affiche film3" />
+                        </div>
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/image2.jpg" alt="affiche film4"/>
+                        </div>
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/image3.jpg" alt="affiche film5" />
+                        </div>
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/image4.jpg" alt="affiche film6" />
+                        </div>
+                    </div>    
+                    <div class="nav-droite">
+                        <img src="pictures/fleche-droite-64.png" alt="flèche pour défilement vers la droite" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="sous-section">
+                <h2 id="Biographie">Biographie</h2>
+                <div class="category4">
+                    <div class="nav-gauche">
+                        <img src="pictures/fleche-gauche-64.png" alt="flèche pour défilement vers la gauche" />
+                    </div>
+                    <div class="slider">
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/imageA.jpg" alt="affiche film7" />
+                        </div>
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/imageB.jpg" alt="affiche film1" />
+                        </div>
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/imageC.jpg" alt="affiche film2" />
+                        </div>
+                        <div class="thumbnail">
+                            <img class="active"
+                                src="pictures/imageD.jpg" alt="affiche film3" />
+                        </div>
+                    </div>
+                    <div class="nav-droite">
+                        <img src="pictures/fleche-droite-64.png" alt="flèche pour défilement vers la droite" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <script src="essaiFETCH.js"></script>
+        
+    </body>
+</html>
