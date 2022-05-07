@@ -14,7 +14,7 @@ body{
 }
 
 /* 1er BLOC-CONTENEUR */
-/* CONTENEUR pr logo + nav  */
+/* CONTENEUR pour logo + nav  */
 header{
     display: flex;
     flex-direction: row;
@@ -102,9 +102,9 @@ p{
 
 /* fenetre modale Meilleur Film */
 .modal {
-    position: absolute;
-    bottom: 10px;
-    margin-left: 0px;
+    position: fixed;
+    bottom : 80px;
+    right : 0;
     display: none; /* none -> car masquée par défaut*/
     align-items: center;
     justify-content: center;
@@ -113,13 +113,17 @@ p{
     background: rgba(95, 94, 94, 0.6);
 }
 
-
 .modal-content {
     width: 100%;
-    padding: 10px 20px 10px 20px;
+    padding: 5px 20px 5px 10px;
     background-color: rgb(195, 187, 187);
     border: 1px solid black;
     
+}
+
+.modal_header h2{
+    padding-right: 20px;
+    overflow: auto;
 }
 
 .no_list{
@@ -139,10 +143,14 @@ p{
     overflow: auto;
 }
 
+ul{
+    padding-left: 20px;
+}
+
 .close {
     color: red;
     position : absolute;
-    right: 50px;
+    right: 20px;
     float: right;
     font-size: 1.5em;
 }
@@ -240,4 +248,10 @@ img.active{
         display: none;
     }
 
+}
+
+@media all and (max-width: 432px){
+    .floatingpic{
+        float: none;
+    }
 }

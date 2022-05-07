@@ -2,11 +2,10 @@
 <html lang="fr">
 	<head>
 		<meta charset="utf-8" />
-		<title>JustStreamit</title>
+		<title>JustStreamIt</title>
         <link rel="stylesheet" href="JustStreamIt.css">
         <link href="http://fonts.cdnfonts.com/css/seaford" rel="stylesheet">
         <style>@import url('http://fonts.cdnfonts.com/css/seaford');</style>
-
 	</head>
     <body>
         <!-- en-tête de la page avec le logo et le menu -->
@@ -21,15 +20,11 @@
                     </ul>
                 </nav>
         </header>
-
-        <!-- Bannière pour meilleur film avec : nom decatégorie,
-        titre du film, bouton -> détails du film, résumé du film.
-        -->
+        <!-- Bannière pour meilleur film -->
         <div id="best_film_banner">
             <div id="best_film_description">
                 <h1>Meilleur Film</h1>
                 <div class="bouton_details"> Détails du film</div>
-
                 <!-- Fenêtre modale -->
                 <aside id="modal1" class="modal">
                     <div class="modal-content">
@@ -58,15 +53,12 @@
                         </div>
                     </div>
                 </aside>
-
                 <p>Résumé du film</p>
             </div>
-
             <div class="best_film_thumbnail">
                 <img src="pictures/image1_test.jpg" alt="affiche du meilleur film"/>
             </div>
         </div>
-
         <!-- 4 sliders (1 par catégorie de films) -->
         <section>
             <div class="sous-section">
@@ -76,7 +68,6 @@
                         <img src="pictures/fleche-gauche-64.png" alt="flèche pour défilement vers la gauche" />
                     </div>
                     <div class="slider">
-                        <!-- INSERER ICI LA MODALE  <aside id="modal1" class="modal"></aside> -->
                         <div class="thumbnail">
                             <img class="active"
                                 src="pictures/image1.jpg" alt="affiche film1"/>
@@ -99,7 +90,6 @@
                     </div>  
                 </div>
             </div>
-
             <div class="sous-section">
                 <h2 id="Aventure">Aventure</h2>    
                 <div class="category2">
@@ -129,7 +119,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="sous-section">
                 <h2 id="Animation">Animation</h2>
                 <div class="category3">
@@ -159,7 +148,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="sous-section">
                 <h2 id="Biographie">Biographie</h2>
                 <div class="category4">
@@ -190,8 +178,6 @@
                 </div>
             </div>
         </section>
-        
         <script src="JustStreamIt.js"></script>
-        
     </body>
 </html>

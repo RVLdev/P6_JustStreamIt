@@ -1,4 +1,4 @@
-// --------------- I - Bloc MEILLEUR FILM (classement imdb) ----------
+// ----------------------- I - Bloc MEILLEUR FILM (classement imdb) --------------------
 let bestFilmsList = [];
 let bestFilmUrl;
 
@@ -12,9 +12,7 @@ function getBestFilmUrl(){
         })
         .then(function(data){
             bestFilmsList = data;
-            //console.log(bestFilmsList); //////////////////////////////////
             bestFilmUrl = bestFilmsList.results[0].url;
-            //console.log(bestFilmUrl);
             getBestFilmDetails(bestFilmUrl);
         })
         .catch(function(error){
@@ -29,7 +27,6 @@ function getBestFilmDetails(bestFilmUrl){
         })
         .then(function(data){
             let detailedBestFilm = data;
-            //console.log(detailedBestFilm);
             getBestFilmTitle(detailedBestFilm);
         })
         .catch(function(error){
@@ -37,19 +34,16 @@ function getBestFilmDetails(bestFilmUrl){
         });
 }
 
-
 // 2 Alimentation BLOC CONTENEUR "Meilleur Film"
 function getBestFilmTitle(detailedBestFilm){
     let bestFilmCategoryFilmTitle = document.querySelector('#best_film_description > h1');
     bestFilmCategoryFilmTitle.textContent = "Meilleur film : "+detailedBestFilm.title;
-    //console.log(bestFilmCategoryFilmTitle.textContent);
     getBestFilmTitleResume(detailedBestFilm);
 }
 
 function getBestFilmTitleResume(detailedBestFilm){
     let bestFilmCategoryFilmResume = document.querySelector('#best_film_description > p');
     bestFilmCategoryFilmResume.textContent = detailedBestFilm.description;
-    //console.log(bestFilmCategoryFilmResume.textContent);
     getBestFilmThumbnail(detailedBestFilm);
 }
 
@@ -107,7 +101,7 @@ function getModalBestFilmDetails(detailedBestFilm){
     (modalFilmDetails[0].getElementsByClassName("rated"))[0].innerText = "rated : "+detailedBestFilm.rated;
 }
 
-// 4 Fenetre modale du MEILLEUR FILM ***
+// 4 Fenetre modale du MEILLEUR FILM 
 
 // Structure, éléments fonctionnels de la fenêtre modale (constantes)
 const buttonFilmDetails = document.getElementsByClassName("bouton_details");
@@ -124,7 +118,7 @@ closingCross[0].addEventListener('click', function(){
     modalElement.style.display = "none";
 });
 
-// ---------------------  II  CARROUSELS -----------------------------
+// ----------------------------------  II  CARROUSELS -----------------------------------
 
 // VARIABLES toutes categories :
 let urlRequetePage1;
@@ -152,11 +146,10 @@ let modalCountries;
 let modalRated;
 let detailedFilm;
 
-
 // variables pour "Les films les mieux notés"
-let bestFilmsCategoryList = []; // bestFilmsCategoryList (bestRatedFilmsList),  
-let detailedBestFilmsUrlsList = []; // detailedBestFilmsUrlsList (detailedRatedFilmsUrlsList), 
-let bestFilmsImages = []; // bestFilmsImages (bestRatedFilmsImages)
+let bestFilmsCategoryList = [];
+let detailedBestFilmsUrlsList = [];
+let bestFilmsImages = [];
 var activePicSlider1 = document.querySelectorAll('.category1 .slider .active');
 
 let category1Elements = document.getElementsByClassName("category1");
@@ -256,7 +249,7 @@ class Slider{
     }
 }
 
-// création 1er slider (1ère instance de la classe Slider) 'availableThumbnails' = 'bestFilmsImages'
+// création 1er slider (1ère instance de la classe Slider)
 let bestFilmsSlider = new Slider(activePicSlider1, 
     bestFilmsImages,
     nextThumbnail1,
@@ -341,7 +334,7 @@ BiographySlider.nextThumbnail.addEventListener('click', function(){
 
 
 
-// ******** 1ER CARROUSEL - ETAPE : RECUPERATION DES DONNEES CATEGORIE : 'Films Les Mieux Notés' ***********************
+// *** 1ER CARROUSEL - ETAPE : RECUPERATION DES DONNEES CATEGORIE : 'Films Les Mieux Notés' ***
 
 getBestFilms();
 
@@ -367,7 +360,6 @@ function getFilmsList(urlRequetePage1, urlRequetePage2){
             let filmsRequest = data;
             bestFilmsCategoryList = filmsRequest.results;
             bestFilmsCategoryList.shift();
-            console.log(bestFilmsCategoryList); ///////////////////////////////////
             get2ndPageFilms(bestFilmsCategoryList, urlRequetePage2)
         })
         .catch(function(error){
@@ -393,7 +385,6 @@ function get2ndPageFilms(bestFilmsCategoryList, urlRequetePage2){
             bestFilmsCategoryList.push(page2FilmsList[0]);
             bestFilmsCategoryList.push(page2FilmsList[1]);
             bestFilmsCategoryList.push(page2FilmsList[2]);
-            console.log(bestFilmsCategoryList);
             getbestFilmsImages(bestFilmsCategoryList); 
             getDetailedRatedFilmsUrls(bestFilmsCategoryList);
             return bestFilmsCategoryList;
@@ -408,7 +399,6 @@ function getDetailedRatedFilmsUrls(bestFilmsCategoryList){
     for (let eachFilm of bestFilmsCategoryList){
         detailedBestFilmsUrlsList.push(eachFilm.url);
     }
-    console.log(detailedBestFilmsUrlsList); //////////////////////////////////////
     return detailedBestFilmsUrlsList;
 }
 
@@ -418,14 +408,12 @@ function getbestFilmsImages(bestFilmsCategoryList){
         for(let everyFilm in bestFilmsCategoryList){
             bestFilmsImages.push(bestFilmsCategoryList[everyFilm].image_url);
         }
-        console.log(bestFilmsImages); //////////////////////////////////////////
         loadRatedFilmsSliderImages(bestFilmsImages);
         return bestFilmsImages;
     }
 }
 
-
-// ********** 1ER CARROUSEL - ETAPE : CHARGER LE SLIDER *********************************
+// ********** 1ER CARROUSEL - ETAPE : CHARGER LE SLIDER ********************************
 
 // 1ER CARROUSEL  Chargement des 4 images ds Carrousel "Films les mieux notés"
 /* 
@@ -439,10 +427,10 @@ function loadRatedFilmsSliderImages(bestFilmsImages){
     activePicSlider1[1].setAttribute("src", bestFilmsImages[1]);
     activePicSlider1[2].setAttribute("src", bestFilmsImages[2]);
     activePicSlider1[3].setAttribute("src", bestFilmsImages[3]);
-    console.log('Les 4 images du Carrousel "Films les mieux notés" sont chargées'); //////////////////////////////
+    console.log('Les 4 images du Carrousel "Films les mieux notés" sont chargées'); ////
 }
 
-// *********** 1ER CARROUSEL - ETAPE : CREER ET AFFICHER/FERMER LA MODALE *********************************
+// *********** 1ER CARROUSEL - ETAPE : CREER ET AFFICHER/FERMER LA MODALE **************
 
 class SliderModal{
     constructor(newSliderModal, newSliderModalContent, newSliderModalHeader, sliderModalClose, 
@@ -501,7 +489,7 @@ class SliderModal{
     }
 
     setThumbnailModalElementsAttributes(){
-        this.newSliderModal.setAttribute('id', "modalBestRated");
+        this.newSliderModal.setAttribute('id', "modalSlider");
         this.newSliderModal.setAttribute('class', "modal");
     
         this.newSliderModalContent.setAttribute('class', "modal-content");
@@ -628,7 +616,6 @@ class SliderModal{
 }
 
 // 1ER CARROUSEL - 1 INSTANCIATION de la MODALE d'un carrousel et création de ses éléments
-
 let bestFilmsSliderModal = new SliderModal(newModal, 
         newModalContent, newModalHeader, modalClose, modalH2, 
         newModalBody, modalUl, modalNoList, modalImage, 
@@ -637,7 +624,7 @@ let bestFilmsSliderModal = new SliderModal(newModal,
         modalGenres, modalCountries, modalRated, 
         slidersList1, thumbnailsList1, detailedFilm);
 
-bestFilmsSliderModal.modalH2 = "Catégorie : Les Films les mieux notés"
+bestFilmsSliderModal.modalH2 = "Catégorie : Films les mieux notés"
 bestFilmsSliderModal.setThumbnailModalElements();
 bestFilmsSliderModal.setThumbnailModalElementsAttributes();
 bestFilmsSliderModal.buildThumbnailModal();
@@ -649,13 +636,11 @@ for(let thumbnailIndex in [0, 1, 2, 3]){
         let activePicUrl = activePicSlider1[thumbnailIndex].getAttribute("src");
         let filmIndex = bestFilmsImages.indexOf(activePicUrl);
         let filmUrl = detailedBestFilmsUrlsList[filmIndex];
-        console.log(filmUrl); /////////////////////////////////////////////
         getFilmDetails(filmUrl);
     });
 }
 
 // 1ER CARROUSEL récupération  LISTE des DETAILS d'UN FILM à partir de l'url du film détaillé
-
 function getFilmDetails(filmUrl){
     fetch(filmUrl)
         .then(function(response){
@@ -663,9 +648,7 @@ function getFilmDetails(filmUrl){
         })
         .then(function(data){
         bestFilmsSliderModal.detailedFilm = data; 
-        console.log(bestFilmsSliderModal.detailedFilm);  ////////////////////////////////////
         bestFilmsSliderModal.setModalFilmDetails(this.sliderDetailedFilm);
-        
         bestFilmsSliderModal.displaySliderModal(this.newSliderModal);
         return bestFilmsSliderModal.detailedFilm;
         })
@@ -673,7 +656,6 @@ function getFilmDetails(filmUrl){
             console.log(error.message);
         });
 }
-
 
 // 1ER CARROUSEL -3 FERMETURE de la MODALE de la vignette cliquée
 let bestFilmsClosingCross = (document.getElementsByClassName('close'))[1];
@@ -683,10 +665,7 @@ bestFilmsClosingCross.addEventListener('click', function(){
 
 
 
-
-
-
-// ******** 2EME CARROUSEL - ETAPE : RECUPERATION DES DONNEES CATEGORIE : 'Aventure' ***********************
+// ******** 2EME CARROUSEL - ETAPE : RECUPERATION DES DONNEES CATEGORIE : 'Aventure' **********
 
 getAdventureFilms();
 
@@ -707,11 +686,10 @@ function getAdvendureFilmsList(urlRequeteAdventurePage1, urlRequeteAdventurePage
         .then(function(data){
             let AdvendureFilmsRequest = data;
             adventureFilmsCategoryList = AdvendureFilmsRequest.results;
-            //console.log(adventureFilmsCategoryList); ///////////////////////////////////
             get2ndPageAdventureFilms(adventureFilmsCategoryList, urlRequeteAdventurePage2)
         })
         .catch(function(error){
-            console.log(error.message); ///////////////////////
+            console.log(error.message);
         });
 }
 
@@ -727,14 +705,12 @@ function get2ndPageAdventureFilms(adventureFilmsCategoryList, urlRequeteAdventur
             let page2AdventureFilmsList = AdvendurefilmsRequestPage2.results;
             adventureFilmsCategoryList.push(page2AdventureFilmsList[0]);
             adventureFilmsCategoryList.push(page2AdventureFilmsList[1]);
-            
-            console.log(adventureFilmsCategoryList);
             getAdventureFilmsImages(adventureFilmsCategoryList); 
             getDetailedAdventureFilmsUrls(adventureFilmsCategoryList);
             return adventureFilmsCategoryList;
         })
         .catch(function(error){
-            console.log(error.message); ////////////////////////
+            console.log(error.message);
         });
 }
 
@@ -743,7 +719,6 @@ function getDetailedAdventureFilmsUrls(adventureFilmsCategoryList){
     for (let eachFilm of adventureFilmsCategoryList){
         detailedAdventureFilmsUrlsList.push(eachFilm.url);
     }
-    //console.log(detailedAdventureFilmsUrlsList); //////////////////////////////////////
     return detailedAdventureFilmsUrlsList;
 }
 
@@ -753,14 +728,13 @@ function getAdventureFilmsImages(adventureFilmsCategoryList){
         for(let everyFilm in adventureFilmsCategoryList){
             adventureFilmsImages.push(adventureFilmsCategoryList[everyFilm].image_url);
         }
-        //console.log(adventureFilmsImages); //////////////////////////////////////////
         loadAdventureFilmsSliderImages(adventureFilmsImages);
         return adventureFilmsImages;
     }
 }
 
 
-// ********** 2EME CARROUSEL - ETAPE : CHARGER LE SLIDER *********************************
+// *************** 2EME CARROUSEL - ETAPE : CHARGER LE SLIDER **************************
 
 // 2EME CARROUSEL  Chargement des 4 images ds Carrousel "Aventure"
 
@@ -769,10 +743,10 @@ function loadAdventureFilmsSliderImages(adventureFilmsImages){
     activePicSlider2[1].setAttribute("src", adventureFilmsImages[1]);
     activePicSlider2[2].setAttribute("src", adventureFilmsImages[2]);
     activePicSlider2[3].setAttribute("src", adventureFilmsImages[3]);
-    console.log('Les 4 images du Carrousel AVENTURE sont chargées'); //////////////////////////////
+    console.log('Les 4 images du Carrousel AVENTURE sont chargées'); ///////////////////
 }
 
-// *********** 2EME CARROUSEL - ETAPE : CREER ET AFFICHER/FERMER LA MODALE *********************************
+// ************ 2EME CARROUSEL - ETAPE : CREER ET AFFICHER/FERMER LA MODALE ************
 
 // 2EME CARROUSEL - 1 INSTANCIATION de la MODALE d'un carrousel et création de ses éléments
 let adventureFilmsSliderModal = new SliderModal(newModal, 
@@ -795,7 +769,6 @@ for(let thumbnailIndex in [0, 1, 2, 3]){
         let activePicUrl = activePicSlider2[thumbnailIndex].getAttribute("src");
         let filmIndex = adventureFilmsImages.indexOf(activePicUrl);
         let adventureFilmUrl = detailedAdventureFilmsUrlsList[filmIndex];
-        //console.log(adventureFilmUrl); /////////////////////////////////////////////
         getAdventureFilmDetails(adventureFilmUrl);
     });
 }
@@ -809,13 +782,12 @@ function getAdventureFilmDetails(adventureFilmUrl){
         })
         .then(function(data){
             adventureFilmsSliderModal.detailedFilm = data;
-            //console.log(adventureFilmsSliderModal.detailedFilm);  ////////////////////////////////////
             adventureFilmsSliderModal.setModalFilmDetails(this.sliderDetailedFilm);
             adventureFilmsSliderModal.displaySliderModal(this.newSliderModal);
             return adventureFilmsSliderModal.detailedFilm;
         })
         .catch(function(error){
-            //console.log(error.message);
+            console.log(error.message);
         });
 }
 
@@ -827,7 +799,7 @@ adventureFilmsClosingCross.addEventListener('click', function(){
     });
 
 
-// ******** 3EME CARROUSEL - ETAPE : RECUPERATION DES DONNEES CATEGORIE : 'Animation' ***********************
+// ******** 3EME CARROUSEL - ETAPE : RECUPERATION DES DONNEES CATEGORIE : 'Animation' *********
 
 getAnimationFilms();
 
@@ -848,11 +820,10 @@ function getAnimationFilmsList(urlRequeteAnimationPage1, urlRequeteAnimationPage
         .then(function(data){
             let AnimationFilmsRequest = data;
             animationFilmsCategoryList = AnimationFilmsRequest.results;
-            //console.log(animationFilmsCategoryList); ///////////////////////////////////
             get2ndPageAnimationFilms(animationFilmsCategoryList, urlRequeteAnimationPage2)
         })
         .catch(function(error){
-            console.log(error.message); ///////////////////////
+            console.log(error.message);
         });
 }
 
@@ -868,14 +839,12 @@ function get2ndPageAnimationFilms(animationFilmsCategoryList, urlRequeteAnimatio
             let page2AnimationFilmsList = animationFilmsRequestPage2.results;
             animationFilmsCategoryList.push(page2AnimationFilmsList[0]);
             animationFilmsCategoryList.push(page2AnimationFilmsList[1]);
-            
-            console.log(animationFilmsCategoryList);
             getAnimationFilmsImages(animationFilmsCategoryList); 
             getDetailedAnimationFilmsUrls(animationFilmsCategoryList);
             return animationFilmsCategoryList;
         })
         .catch(function(error){
-            console.log(error.message); ////////////////////////
+            console.log(error.message);
         });
 }
 
@@ -885,7 +854,6 @@ function getDetailedAnimationFilmsUrls(animationFilmsCategoryList){
     for (let eachFilm of animationFilmsCategoryList){
         detailedAnimationFilmsUrlsList.push(eachFilm.url);
     }
-    //console.log(detailedAnimationFilmsUrlsList); //////////////////////////////////////
     return detailedAnimationFilmsUrlsList;
 }
 
@@ -895,13 +863,12 @@ function getAnimationFilmsImages(animationFilmsCategoryList){
         for(let everyFilm in animationFilmsCategoryList){
             animationFilmsImages.push(animationFilmsCategoryList[everyFilm].image_url);
         }
-        //console.log(animationFilmsImages); //////////////////////////////////////////
         loadAnimationFilmsSliderImages(animationFilmsImages);
         return animationFilmsImages;
     }
 }
 
-// ********** 3EME CARROUSEL - ETAPE : CHARGER LE SLIDER *********************************
+// ************** 3EME CARROUSEL - ETAPE : CHARGER LE SLIDER ***************************
 
 // 3EME CARROUSEL  Chargement des 4 images ds Carrousel "Animation"
 function loadAnimationFilmsSliderImages(animationFilmsImages){
@@ -909,10 +876,10 @@ function loadAnimationFilmsSliderImages(animationFilmsImages){
     activePicSlider3[1].setAttribute("src", animationFilmsImages[1]);
     activePicSlider3[2].setAttribute("src", animationFilmsImages[2]);
     activePicSlider3[3].setAttribute("src", animationFilmsImages[3]);
-    console.log('Les 4 images du Carrousel ANIMATION sont chargées'); //////////////////////////////
+    console.log('Les 4 images du Carrousel ANIMATION sont chargées'); /////////////////
 }
 
-// *********** 3EME CARROUSEL - ETAPE : CREER ET AFFICHER/FERMER LA MODALE *********************************
+// *********** 3EME CARROUSEL - ETAPE : CREER ET AFFICHER/FERMER LA MODALE *************
 
 // 3EME CARROUSEL - 1 INSTANCIATION de la MODALE d'un carrousel et création de ses éléments
 let animationFilmsSliderModal = new SliderModal(newModal, 
@@ -935,13 +902,11 @@ for(let thumbnailIndex in [0, 1, 2, 3]){
         let activePicUrl = activePicSlider3[thumbnailIndex].getAttribute("src");
         let filmIndex = animationFilmsImages.indexOf(activePicUrl);
         let animationFilmUrl = detailedAnimationFilmsUrlsList[filmIndex];
-        //console.log(animationFilmUrl); /////////////////////////////////////////////
         getAnimationFilmDetails(animationFilmUrl);
     });
 }
 
 // 3EME CARROUSEL récupération  LISTE des DETAILS d'UN FILM à partir de l'url du film détaillé
-
 function getAnimationFilmDetails(animationFilmUrl){
     fetch(animationFilmUrl)
         .then(function(response){
@@ -949,7 +914,6 @@ function getAnimationFilmDetails(animationFilmUrl){
         })
         .then(function(data){
             animationFilmsSliderModal.detailedFilm = data;
-            //console.log(animationFilmsSliderModal.detailedFilm);  ////////////////////////////////////
             animationFilmsSliderModal.setModalFilmDetails(this.sliderDetailedFilm);
             animationFilmsSliderModal.displaySliderModal(this.newSliderModal);
             return animationFilmsSliderModal.detailedFilm;
@@ -967,7 +931,7 @@ animationFilmsClosingCross.addEventListener('click', function(){
 
 
 
-// ******** 4EME CARROUSEL - ETAPE : RECUPERATION DES DONNEES CATEGORIE : 'Biographie' ***********************
+// ******* 4EME CARROUSEL - ETAPE : RECUPERATION DES DONNEES CATEGORIE : 'Biographie' *********
 
 getBiographyFilms();
 
@@ -979,7 +943,6 @@ function getBiographyFilms(){
 }
 
 // 4EME CARROUSEL récupération de la  1ère page de données de la requête
-
 function getBiographyFilmsList(urlRequeteBiographyPage1, urlRequeteBiographyPage2){
     fetch(urlRequeteBiographyPage1)
         .then(function(response){
@@ -988,11 +951,10 @@ function getBiographyFilmsList(urlRequeteBiographyPage1, urlRequeteBiographyPage
         .then(function(data){
             let BiographyFilmsRequest = data;
             biographyFilmsCategoryList = BiographyFilmsRequest.results;
-            //console.log(biographyFilmsCategoryList); ///////////////////////////////////
             get2ndPageBiographyFilms(biographyFilmsCategoryList, urlRequeteBiographyPage2);
         })
         .catch(function(error){
-            console.log(error.message); ///////////////////////
+            console.log(error.message);
         });
 }
 
@@ -1008,14 +970,12 @@ function get2ndPageBiographyFilms(biographyFilmsCategoryList, urlRequeteBiograph
             let page2BiographyFilmsList = biographyFilmsRequestPage2.results;
             biographyFilmsCategoryList.push(page2BiographyFilmsList[0]);
             biographyFilmsCategoryList.push(page2BiographyFilmsList[1]);
-            
-            console.log(biographyFilmsCategoryList);
             getBiographyFilmsImages(biographyFilmsCategoryList); 
             getDetailedBiographyFilmsUrls(biographyFilmsCategoryList);
             return biographyFilmsCategoryList;
         })
         .catch(function(error){
-            console.log(error.message); ////////////////////////
+            console.log(error.message);
         });
 }
 
@@ -1024,7 +984,6 @@ function getDetailedBiographyFilmsUrls(biographyFilmsCategoryList){
     for (let eachFilm of biographyFilmsCategoryList){
         detailedBiographyFilmsUrlsList.push(eachFilm.url);
     }
-    //console.log(detailedAnimationFilmsUrlsList); //////////////////////////////////////
     return detailedBiographyFilmsUrlsList;
 }
 
@@ -1034,13 +993,12 @@ function getBiographyFilmsImages(biographyFilmsCategoryList){
         for(let everyFilm in biographyFilmsCategoryList){
             biographyFilmsImages.push(biographyFilmsCategoryList[everyFilm].image_url);
         }
-        //console.log(animationFilmsImages); //////////////////////////////////////////
         loadBiographyFilmsSliderImages(biographyFilmsImages);
         return biographyFilmsImages;
     }
 }
 
-// ********** 4EME CARROUSEL - ETAPE : CHARGER LE SLIDER *********************************
+// ********** 4EME CARROUSEL - ETAPE : CHARGER LE SLIDER *******************************
 
 // 4EME CARROUSEL  Chargement des 4 images ds Carrousel "Biographie"
 function loadBiographyFilmsSliderImages(biographyFilmsImages){
@@ -1048,10 +1006,10 @@ function loadBiographyFilmsSliderImages(biographyFilmsImages){
     activePicSlider4[1].setAttribute("src", biographyFilmsImages[1]);
     activePicSlider4[2].setAttribute("src", biographyFilmsImages[2]);
     activePicSlider4[3].setAttribute("src", biographyFilmsImages[3]);
-    console.log('Les 4 images du Carrousel BIOGRAPHIE sont chargées'); //////////////////////////////
+    console.log('Les 4 images du Carrousel BIOGRAPHIE sont chargées'); ///////////////
 }
 
-// *********** 4EME CARROUSEL - ETAPE : CREER ET AFFICHER/FERMER LA MODALE *********************************
+// *********** 4EME CARROUSEL - ETAPE : CREER ET AFFICHER/FERMER LA MODALE ********************
 
 // 4EME CARROUSEL - 1 INSTANCIATION de la MODALE d'un carrousel et création de ses éléments
 let biographyFilmsSliderModal = new SliderModal(newModal, 
@@ -1074,13 +1032,11 @@ for(let thumbnailIndex in [0, 1, 2, 3]){
         let activePicUrl = activePicSlider4[thumbnailIndex].getAttribute("src");
         let filmIndex = biographyFilmsImages.indexOf(activePicUrl);
         let biographyFilmUrl = detailedBiographyFilmsUrlsList[filmIndex];
-        //console.log(biographyFilmUrl); /////////////////////////////////////////////
         getBiographyFilmDetails(biographyFilmUrl);
     });
 }
 
 // 3EME CARROUSEL récupération  LISTE des DETAILS d'UN FILM à partir de l'url du film détaillé
-
 function getBiographyFilmDetails(biographyFilmUrl){
     fetch(biographyFilmUrl)
         .then(function(response){
@@ -1088,7 +1044,6 @@ function getBiographyFilmDetails(biographyFilmUrl){
         })
         .then(function(data){
             biographyFilmsSliderModal.detailedFilm = data;
-            //console.log(biographyFilmsSliderModal.detailedFilm);  ////////////////////////////////////
             biographyFilmsSliderModal.setModalFilmDetails(this.sliderDetailedFilm);
             biographyFilmsSliderModal.displaySliderModal(this.newSliderModal);
             return biographyFilmsSliderModal.detailedFilm;
@@ -1103,8 +1058,3 @@ let biographyFilmsClosingCross = (document.getElementsByClassName('close'))[4];
 biographyFilmsClosingCross.addEventListener('click', function(){
     biographyFilmsSliderModal.closeSliderModal();
     });
-
-
-
-
-
