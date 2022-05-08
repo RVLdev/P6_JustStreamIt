@@ -120,10 +120,9 @@ closingCross[0].addEventListener('click', function(){
 
 // ----------------------------------  II  CARROUSELS -----------------------------------
 
-// VARIABLES toutes categories :
-let urlRequetePage1;
-let urlRequetePage2;
+// VARIABLES
 
+// variables pour les instances de la classe SliderModal
 let newModal; 
 let newModalContent;
 let newModalHeader;
@@ -147,40 +146,48 @@ let modalRated;
 let detailedFilm;
 
 // variables pour "Les films les mieux notés"
+let urlRequetePage1;
+let urlRequetePage2;
 let bestFilmsCategoryList = [];
 let detailedBestFilmsUrlsList = [];
 let bestFilmsImages = [];
-var activePicSlider1 = document.querySelectorAll('.category1 .slider .active');
+let activePicSlider1 = document.querySelectorAll('.category1 .slider .active');
 
 let category1Elements = document.getElementsByClassName("category1");
 let thumbnailsList1 = category1Elements[0].getElementsByClassName("thumbnail");
 let slidersList1 = category1Elements[0].getElementsByClassName("slider");
 
 // variables pour la catégorie Aventure
+let urlRequeteAdventurePage1;
+let urlRequeteAdventurePage2;
 let adventureFilmsCategoryList = [];
 let detailedAdventureFilmsUrlsList = [];
 let adventureFilmsImages = [];
-var activePicSlider2 = document.querySelectorAll('.category2 .slider .active');
+let activePicSlider2 = document.querySelectorAll('.category2 .slider .active');
 
 let category2Elements = document.getElementsByClassName("category2");
 let thumbnailsList2 = category2Elements[0].getElementsByClassName("thumbnail");
 let slidersList2 = category2Elements[0].getElementsByClassName("slider");
 
 // variables pour la catégorie Animation
+let urlRequeteAnimationPage1;
+let urlRequeteAnimationPage2;
 let animationFilmsCategoryList = [];
 let detailedAnimationFilmsUrlsList = [];
 let animationFilmsImages = [];
-var activePicSlider3 = document.querySelectorAll('.category3 .slider .active');
+let activePicSlider3 = document.querySelectorAll('.category3 .slider .active');
 
 let category3Elements = document.getElementsByClassName("category3");
 let thumbnailsList3 = category3Elements[0].getElementsByClassName("thumbnail");
 let slidersList3 = category3Elements[0].getElementsByClassName("slider");
 
 // variables pour la catégorie Biographie
+let urlRequeteBiographyPage1;
+let urlRequeteBiographyPage2;
 let biographyFilmsCategoryList = [];
 let detailedBiographyFilmsUrlsList = [];
 let biographyFilmsImages = [];
-var activePicSlider4 = document.querySelectorAll('.category4 .slider .active');
+let activePicSlider4 = document.querySelectorAll('.category4 .slider .active');
 
 let category4Elements = document.getElementsByClassName("category4");
 let thumbnailsList4 = category4Elements[0].getElementsByClassName("thumbnail");
@@ -360,7 +367,7 @@ function getFilmsList(urlRequetePage1, urlRequetePage2){
             let filmsRequest = data;
             bestFilmsCategoryList = filmsRequest.results;
             bestFilmsCategoryList.shift();
-            get2ndPageFilms(bestFilmsCategoryList, urlRequetePage2)
+            get2ndPageFilms(bestFilmsCategoryList, urlRequetePage2);
         })
         .catch(function(error){
             console.log(error.message);
@@ -624,7 +631,7 @@ let bestFilmsSliderModal = new SliderModal(newModal,
         modalGenres, modalCountries, modalRated, 
         slidersList1, thumbnailsList1, detailedFilm);
 
-bestFilmsSliderModal.modalH2 = "Catégorie : Films les mieux notés"
+bestFilmsSliderModal.modalH2 = "Catégorie : Films les mieux notés";
 bestFilmsSliderModal.setThumbnailModalElements();
 bestFilmsSliderModal.setThumbnailModalElementsAttributes();
 bestFilmsSliderModal.buildThumbnailModal();
@@ -686,7 +693,7 @@ function getAdvendureFilmsList(urlRequeteAdventurePage1, urlRequeteAdventurePage
         .then(function(data){
             let AdvendureFilmsRequest = data;
             adventureFilmsCategoryList = AdvendureFilmsRequest.results;
-            get2ndPageAdventureFilms(adventureFilmsCategoryList, urlRequeteAdventurePage2)
+            get2ndPageAdventureFilms(adventureFilmsCategoryList, urlRequeteAdventurePage2);
         })
         .catch(function(error){
             console.log(error.message);
@@ -695,7 +702,6 @@ function getAdvendureFilmsList(urlRequeteAdventurePage1, urlRequeteAdventurePage
 
 // 2EME CARROUSEL récupération de la  2e page de données de la requête
 function get2ndPageAdventureFilms(adventureFilmsCategoryList, urlRequeteAdventurePage2){
-    console.log(adventureFilmsCategoryList, );
     fetch(urlRequeteAdventurePage2)
         .then(function(response){
             return response.json();
@@ -757,7 +763,7 @@ let adventureFilmsSliderModal = new SliderModal(newModal,
     modalGenres, modalCountries, modalRated, 
     slidersList2, thumbnailsList2, detailedFilm);
 
-adventureFilmsSliderModal.modalH2 = "Catégorie : Aventure"
+adventureFilmsSliderModal.modalH2 = "Catégorie : Aventure";
 adventureFilmsSliderModal.setThumbnailModalElements();
 adventureFilmsSliderModal.setThumbnailModalElementsAttributes();
 adventureFilmsSliderModal.buildThumbnailModal();
@@ -820,7 +826,7 @@ function getAnimationFilmsList(urlRequeteAnimationPage1, urlRequeteAnimationPage
         .then(function(data){
             let AnimationFilmsRequest = data;
             animationFilmsCategoryList = AnimationFilmsRequest.results;
-            get2ndPageAnimationFilms(animationFilmsCategoryList, urlRequeteAnimationPage2)
+            get2ndPageAnimationFilms(animationFilmsCategoryList, urlRequeteAnimationPage2);
         })
         .catch(function(error){
             console.log(error.message);
@@ -890,7 +896,7 @@ let animationFilmsSliderModal = new SliderModal(newModal,
     modalGenres, modalCountries, modalRated, 
     slidersList3, thumbnailsList3, detailedFilm);
 
-animationFilmsSliderModal.modalH2 = "Catégorie : Animation"
+animationFilmsSliderModal.modalH2 = "Catégorie : Animation";
 animationFilmsSliderModal.setThumbnailModalElements();
 animationFilmsSliderModal.setThumbnailModalElementsAttributes();
 animationFilmsSliderModal.buildThumbnailModal();
@@ -1020,7 +1026,7 @@ let biographyFilmsSliderModal = new SliderModal(newModal,
     modalGenres, modalCountries, modalRated, 
     slidersList4, thumbnailsList4, detailedFilm);
 
-biographyFilmsSliderModal.modalH2 = "Catégorie : Biographie"
+biographyFilmsSliderModal.modalH2 = "Catégorie : Biographie";
 biographyFilmsSliderModal.setThumbnailModalElements();
 biographyFilmsSliderModal.setThumbnailModalElementsAttributes();
 biographyFilmsSliderModal.buildThumbnailModal();
