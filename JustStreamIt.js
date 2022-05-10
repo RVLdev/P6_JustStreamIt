@@ -169,12 +169,12 @@ let category2Elements = document.getElementsByClassName("category2");
 let thumbnailsList2 = category2Elements[0].getElementsByClassName("thumbnail");
 let slidersList2 = category2Elements[0].getElementsByClassName("slider");
 
-// variables pour la catégorie Animation
-let urlRequeteAnimationPage1;
-let urlRequeteAnimationPage2;
-let animationFilmsCategoryList = [];
-let detailedAnimationFilmsUrlsList = [];
-let animationFilmsImages = [];
+// variables pour la catégorie Mystère
+let urlRequeteMysteryPage1;
+let urlRequeteMysteryPage2;
+let MysteryFilmsCategoryList = [];
+let detailedMysteryFilmsUrlsList = [];
+let MysteryFilmsImages = [];
 let activePicSlider3 = document.querySelectorAll('.category3 .slider .active');
 
 let category3Elements = document.getElementsByClassName("category3");
@@ -199,7 +199,7 @@ let slidersList4 = category4Elements[0].getElementsByClassName("slider");
 //listes des 4 vignettes 'actives' (activeThumbnails) des 4 sliders
 category1 -> BestFilms
 category2 -> Adventure
-category3 -> Animation
+category3 -> Mystery
 category4 -> Biography
 */
 
@@ -271,8 +271,8 @@ let AdventureSlider = new Slider(activePicSlider2,
     count2);
 
 //création 3e slider (3e instance de la classe Slider)
-let AnimationSlider = new Slider(activePicSlider3, 
-    animationFilmsImages, 
+let MysterySlider = new Slider(activePicSlider3, 
+    MysteryFilmsImages, 
     nextThumbnail3,
     previousThumbnail3,
     count3);
@@ -314,16 +314,16 @@ AdventureSlider.nextThumbnail.addEventListener('click', function(){
 
 
 // détection de clic sur boutons précédent/suivant 3 et lancement réaction
-AnimationSlider.previousThumbnail.addEventListener('click', function(){
-    AnimationSlider.count--;
-    AnimationSlider.updatingCount(this.count);
-    AnimationSlider.changeThumbnail(this.activeThumbnails, this.availableThumbnails, this.count);
+MysterySlider.previousThumbnail.addEventListener('click', function(){
+    MysterySlider.count--;
+    MysterySlider.updatingCount(this.count);
+    MysterySlider.changeThumbnail(this.activeThumbnails, this.availableThumbnails, this.count);
 });
 
-AnimationSlider.nextThumbnail.addEventListener('click', function(){
-    AnimationSlider.count++;
-    AnimationSlider.updatingCount(this.count);
-    AnimationSlider.changeThumbnail(this.activeThumbnails, this.availableThumbnails, this.count);
+MysterySlider.nextThumbnail.addEventListener('click', function(){
+    MysterySlider.count++;
+    MysterySlider.updatingCount(this.count);
+    MysterySlider.changeThumbnail(this.activeThumbnails, this.availableThumbnails, this.count);
 });
 
 // détection de clic sur boutons précédent/suivant 4 et lancement réaction
@@ -434,7 +434,6 @@ function loadRatedFilmsSliderImages(bestFilmsImages){
     activePicSlider1[1].setAttribute("src", bestFilmsImages[1]);
     activePicSlider1[2].setAttribute("src", bestFilmsImages[2]);
     activePicSlider1[3].setAttribute("src", bestFilmsImages[3]);
-    console.log('Les 4 images du Carrousel "Films les mieux notés" sont chargées'); ////
 }
 
 // *********** 1ER CARROUSEL - ETAPE : CREER ET AFFICHER/FERMER LA MODALE **************
@@ -749,7 +748,6 @@ function loadAdventureFilmsSliderImages(adventureFilmsImages){
     activePicSlider2[1].setAttribute("src", adventureFilmsImages[1]);
     activePicSlider2[2].setAttribute("src", adventureFilmsImages[2]);
     activePicSlider2[3].setAttribute("src", adventureFilmsImages[3]);
-    console.log('Les 4 images du Carrousel AVENTURE sont chargées'); ///////////////////
 }
 
 // ************ 2EME CARROUSEL - ETAPE : CREER ET AFFICHER/FERMER LA MODALE ************
@@ -805,28 +803,28 @@ adventureFilmsClosingCross.addEventListener('click', function(){
     });
 
 
-// ******** 3EME CARROUSEL - ETAPE : RECUPERATION DES DONNEES CATEGORIE : 'Animation' *********
+// ******** 3EME CARROUSEL - ETAPE : RECUPERATION DES DONNEES CATEGORIE : 'Mystère' *********
 
-getAnimationFilms();
+getMysteryFilms();
 
-// 3EME CARROUSEL    1- Récupération de la LISTE DES FILMS pour carrousel "Animation"
-function getAnimationFilms(){
-    urlRequeteAnimationPage1 = "http://localhost:8000/api/v1/titles/?format=json&genre_contains=Animation&sort_by=imdb_score,-year";
-    urlRequeteAnimationPage2 = "http://localhost:8000/api/v1/titles/?format=json&genre_contains=Animation&page=2&sort_by=imdb_score,-year";
-    getAnimationFilmsList(urlRequeteAnimationPage1, urlRequeteAnimationPage2);
+// 3EME CARROUSEL    1- Récupération de la LISTE DES FILMS pour carrousel "Mystère"
+function getMysteryFilms(){
+    urlRequeteMysteryPage1 = "http://localhost:8000/api/v1/titles/?format=json&genre_contains=Mystery&sort_by=imdb_score,-year";
+    urlRequeteMysteryPage2 = "http://localhost:8000/api/v1/titles/?format=json&genre_contains=Mystery&page=2&sort_by=imdb_score,-year";
+    getMysteryFilmsList(urlRequeteMysteryPage1, urlRequeteMysteryPage2);
 }
 
 // 3EME CARROUSEL récupération de la  1ère page de données de la requête
 
-function getAnimationFilmsList(urlRequeteAnimationPage1, urlRequeteAnimationPage2){
-    fetch(urlRequeteAnimationPage1)
+function getMysteryFilmsList(urlRequeteMysteryPage1, urlRequeteMysteryPage2){
+    fetch(urlRequeteMysteryPage1)
         .then(function(response){
             return response.json();
         })
         .then(function(data){
-            let AnimationFilmsRequest = data;
-            animationFilmsCategoryList = AnimationFilmsRequest.results;
-            get2ndPageAnimationFilms(animationFilmsCategoryList, urlRequeteAnimationPage2);
+            let MysteryFilmsRequest = data;
+            MysteryFilmsCategoryList = MysteryFilmsRequest.results;
+            get2ndPageMysteryFilms(MysteryFilmsCategoryList, urlRequeteMysteryPage2);
         })
         .catch(function(error){
             console.log(error.message);
@@ -834,20 +832,20 @@ function getAnimationFilmsList(urlRequeteAnimationPage1, urlRequeteAnimationPage
 }
 
 // 3EME CARROUSEL récupération de la  2e page de données de la requête
-function get2ndPageAnimationFilms(animationFilmsCategoryList, urlRequeteAnimationPage2){
-    console.log(animationFilmsCategoryList);
-    fetch(urlRequeteAnimationPage2)
+function get2ndPageMysteryFilms(MysteryFilmsCategoryList, urlRequeteMysteryPage2){
+    console.log(MysteryFilmsCategoryList);
+    fetch(urlRequeteMysteryPage2)
         .then(function(response){
             return response.json();
         })
         .then(function(data){
-            let animationFilmsRequestPage2 = data;
-            let page2AnimationFilmsList = animationFilmsRequestPage2.results;
-            animationFilmsCategoryList.push(page2AnimationFilmsList[0]);
-            animationFilmsCategoryList.push(page2AnimationFilmsList[1]);
-            getAnimationFilmsImages(animationFilmsCategoryList); 
-            getDetailedAnimationFilmsUrls(animationFilmsCategoryList);
-            return animationFilmsCategoryList;
+            let MysteryFilmsRequestPage2 = data;
+            let page2MysteryFilmsList = MysteryFilmsRequestPage2.results;
+            MysteryFilmsCategoryList.push(page2MysteryFilmsList[0]);
+            MysteryFilmsCategoryList.push(page2MysteryFilmsList[1]);
+            getMysteryFilmsImages(MysteryFilmsCategoryList); 
+            getDetailedMysteryFilmsUrls(MysteryFilmsCategoryList);
+            return MysteryFilmsCategoryList;
         })
         .catch(function(error){
             console.log(error.message);
@@ -856,39 +854,38 @@ function get2ndPageAnimationFilms(animationFilmsCategoryList, urlRequeteAnimatio
 
 
 // 3EME CARROUSEL 2- récupération LISTE urls FILMS DETAILLES 
-function getDetailedAnimationFilmsUrls(animationFilmsCategoryList){
-    for (let eachFilm of animationFilmsCategoryList){
-        detailedAnimationFilmsUrlsList.push(eachFilm.url);
+function getDetailedMysteryFilmsUrls(MysteryFilmsCategoryList){
+    for (let eachFilm of MysteryFilmsCategoryList){
+        detailedMysteryFilmsUrlsList.push(eachFilm.url);
     }
-    return detailedAnimationFilmsUrlsList;
+    return detailedMysteryFilmsUrlsList;
 }
 
-// 3EME CARROUSEL 3- Récupération des images pour carrousel "Animation"
-function getAnimationFilmsImages(animationFilmsCategoryList){
-    if (animationFilmsCategoryList.length > 0){
-        for(let everyFilm in animationFilmsCategoryList){
-            animationFilmsImages.push(animationFilmsCategoryList[everyFilm].image_url);
+// 3EME CARROUSEL 3- Récupération des images pour carrousel "Mystère"
+function getMysteryFilmsImages(MysteryFilmsCategoryList){
+    if (MysteryFilmsCategoryList.length > 0){
+        for(let everyFilm in MysteryFilmsCategoryList){
+            MysteryFilmsImages.push(MysteryFilmsCategoryList[everyFilm].image_url);
         }
-        loadAnimationFilmsSliderImages(animationFilmsImages);
-        return animationFilmsImages;
+        loadMysteryFilmsSliderImages(MysteryFilmsImages);
+        return MysteryFilmsImages;
     }
 }
 
 // ************** 3EME CARROUSEL - ETAPE : CHARGER LE SLIDER ***************************
 
-// 3EME CARROUSEL  Chargement des 4 images ds Carrousel "Animation"
-function loadAnimationFilmsSliderImages(animationFilmsImages){
-    activePicSlider3[0].setAttribute("src", animationFilmsImages[0]);
-    activePicSlider3[1].setAttribute("src", animationFilmsImages[1]);
-    activePicSlider3[2].setAttribute("src", animationFilmsImages[2]);
-    activePicSlider3[3].setAttribute("src", animationFilmsImages[3]);
-    console.log('Les 4 images du Carrousel ANIMATION sont chargées'); /////////////////
+// 3EME CARROUSEL  Chargement des 4 images ds Carrousel "Mystère"
+function loadMysteryFilmsSliderImages(MysteryFilmsImages){
+    activePicSlider3[0].setAttribute("src", MysteryFilmsImages[0]);
+    activePicSlider3[1].setAttribute("src", MysteryFilmsImages[1]);
+    activePicSlider3[2].setAttribute("src", MysteryFilmsImages[2]);
+    activePicSlider3[3].setAttribute("src", MysteryFilmsImages[3]);
 }
 
 // *********** 3EME CARROUSEL - ETAPE : CREER ET AFFICHER/FERMER LA MODALE *************
 
 // 3EME CARROUSEL - 1 INSTANCIATION de la MODALE d'un carrousel et création de ses éléments
-let animationFilmsSliderModal = new SliderModal(newModal, 
+let MysteryFilmsSliderModal = new SliderModal(newModal, 
     newModalContent, newModalHeader, modalClose, modalH2, 
     newModalBody, modalUl, modalNoList, modalImage, 
     modalTitle, modalPublishedDate, modalDuration, modalLong_Desc, 
@@ -896,33 +893,33 @@ let animationFilmsSliderModal = new SliderModal(newModal,
     modalGenres, modalCountries, modalRated, 
     slidersList3, thumbnailsList3, detailedFilm);
 
-animationFilmsSliderModal.modalH2 = "Catégorie : Animation";
-animationFilmsSliderModal.setThumbnailModalElements();
-animationFilmsSliderModal.setThumbnailModalElementsAttributes();
-animationFilmsSliderModal.buildThumbnailModal();
+MysteryFilmsSliderModal.modalH2 = "Catégorie : Mystère";
+MysteryFilmsSliderModal.setThumbnailModalElements();
+MysteryFilmsSliderModal.setThumbnailModalElementsAttributes();
+MysteryFilmsSliderModal.buildThumbnailModal();
 
 
 // 3EME CARROUSEL -2 AFFICHAGE DE LA  MODALE qd clique sur une des vignettes 
 for(let thumbnailIndex in [0, 1, 2, 3]){
     activePicSlider3[thumbnailIndex].addEventListener('click', function(){
         let activePicUrl = activePicSlider3[thumbnailIndex].getAttribute("src");
-        let filmIndex = animationFilmsImages.indexOf(activePicUrl);
-        let animationFilmUrl = detailedAnimationFilmsUrlsList[filmIndex];
-        getAnimationFilmDetails(animationFilmUrl);
+        let filmIndex = MysteryFilmsImages.indexOf(activePicUrl);
+        let MysteryFilmUrl = detailedMysteryFilmsUrlsList[filmIndex];
+        getMysteryFilmDetails(MysteryFilmUrl);
     });
 }
 
 // 3EME CARROUSEL récupération  LISTE des DETAILS d'UN FILM à partir de l'url du film détaillé
-function getAnimationFilmDetails(animationFilmUrl){
-    fetch(animationFilmUrl)
+function getMysteryFilmDetails(MysteryFilmUrl){
+    fetch(MysteryFilmUrl)
         .then(function(response){
             return response.json();
         })
         .then(function(data){
-            animationFilmsSliderModal.detailedFilm = data;
-            animationFilmsSliderModal.setModalFilmDetails(this.sliderDetailedFilm);
-            animationFilmsSliderModal.displaySliderModal(this.newSliderModal);
-            return animationFilmsSliderModal.detailedFilm;
+            MysteryFilmsSliderModal.detailedFilm = data;
+            MysteryFilmsSliderModal.setModalFilmDetails(this.sliderDetailedFilm);
+            MysteryFilmsSliderModal.displaySliderModal(this.newSliderModal);
+            return MysteryFilmsSliderModal.detailedFilm;
         })
         .catch(function(error){
             console.log(error.message);
@@ -930,9 +927,9 @@ function getAnimationFilmDetails(animationFilmUrl){
 }
 
 // 3EME CARROUSEL -3 FERMETURE de la MODALE de la vignette cliquée
-let animationFilmsClosingCross = (document.getElementsByClassName('close'))[3];
-animationFilmsClosingCross.addEventListener('click', function(){
-    animationFilmsSliderModal.closeSliderModal();
+let MysteryFilmsClosingCross = (document.getElementsByClassName('close'))[3];
+MysteryFilmsClosingCross.addEventListener('click', function(){
+    MysteryFilmsSliderModal.closeSliderModal();
     });
 
 
@@ -1012,7 +1009,6 @@ function loadBiographyFilmsSliderImages(biographyFilmsImages){
     activePicSlider4[1].setAttribute("src", biographyFilmsImages[1]);
     activePicSlider4[2].setAttribute("src", biographyFilmsImages[2]);
     activePicSlider4[3].setAttribute("src", biographyFilmsImages[3]);
-    console.log('Les 4 images du Carrousel BIOGRAPHIE sont chargées'); ///////////////
 }
 
 // *********** 4EME CARROUSEL - ETAPE : CREER ET AFFICHER/FERMER LA MODALE ********************
@@ -1042,7 +1038,7 @@ for(let thumbnailIndex in [0, 1, 2, 3]){
     });
 }
 
-// 3EME CARROUSEL récupération  LISTE des DETAILS d'UN FILM à partir de l'url du film détaillé
+// 4EME CARROUSEL récupération  LISTE des DETAILS d'UN FILM à partir de l'url du film détaillé
 function getBiographyFilmDetails(biographyFilmUrl){
     fetch(biographyFilmUrl)
         .then(function(response){
@@ -1059,7 +1055,7 @@ function getBiographyFilmDetails(biographyFilmUrl){
         });
 }
 
-// 3EME CARROUSEL -3 FERMETURE de la MODALE de la vignette cliquée
+// 4EME CARROUSEL -3 FERMETURE de la MODALE de la vignette cliquée
 let biographyFilmsClosingCross = (document.getElementsByClassName('close'))[4];
 biographyFilmsClosingCross.addEventListener('click', function(){
     biographyFilmsSliderModal.closeSliderModal();
