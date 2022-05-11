@@ -524,7 +524,6 @@ class SliderModal{
     }
 
     setThumbnailModalElementsAttributes(){
-        this.newSliderModal.setAttribute('id', "modalSlider");
         this.newSliderModal.setAttribute('class', "modal");
     
         this.newSliderModalContent.setAttribute('class', "modal-content");
