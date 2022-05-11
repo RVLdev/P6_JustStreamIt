@@ -1,5 +1,5 @@
 # P6_JustStreamIt
-DESCRIPTION
+## DESCRIPTION
 
 Projet 6 du parcours OpenClassrooms "Developpeur d'appli Python" : 
 réalisation du front-end d'une application (web) permettant d'afficher des films dont les informations sont fournies par une API.
@@ -13,7 +13,7 @@ Puis, suivent 4 carrousels de 4 affiches. L'utilisateur peut faire défiler 7 fi
 Une croix permet, dans chaque fenêtre modale, de la refermer.
 
 
-PREALABLES & INSTALLATIONS
+## PREALABLES & INSTALLATIONS
 
 Avertissement : Les scripts ont été créés et testés dans un environnement Windows, avec Python3.10.0, pip 22.0.3 Les commandes suivantes peuvent différer selon votre propre environnement.
 
