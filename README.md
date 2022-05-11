@@ -1,7 +1,7 @@
 # P6_JustStreamIt
 DESCRIPTION
 
-Projet 4 du parcours OpenClassrooms "Developpeur d'appli Python" : 
+Projet 6 du parcours OpenClassrooms "Developpeur d'appli Python" : 
 réalisation du front-end d'une application (web) permettant d'afficher des films dont les informations sont fournies par une API.
 
 L'interface de l'application propose à l'utilisateur de consulter l'affiche et les informations du films selon plusieurs catégories : meilleur film (selon classement Imdb), films les mieux notés, aventure(ordre : selon classement Imdb), animation (ordre : selon classement Imdb) et biographie (ordre : selon classement Imdb).
