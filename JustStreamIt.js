@@ -410,7 +410,6 @@ nous avons 4 films issus de la 1ère page de données.
 Il ne nous manque plus que les 3 films suivants.
 */
 function get2ndPageFilms(bestFilmsCategoryList, urlRequetePage2){
-    console.log(bestFilmsCategoryList);
     fetch(urlRequetePage2)
         .then(function(response){
             return response.json();
@@ -896,7 +895,6 @@ function getMysteryFilmsList(urlRequeteMysteryPage1, urlRequeteMysteryPage2){
 // 3EME CARROUSEL récupération de la  2e page de données de la requête
 function get2ndPageMysteryFilms(MysteryFilmsCategoryList, 
                                 urlRequeteMysteryPage2){
-    console.log(MysteryFilmsCategoryList);
     fetch(urlRequeteMysteryPage2)
         .then(function(response){
             return response.json();
@@ -1031,7 +1029,6 @@ function getBiographyFilmsList(urlRequeteBiographyPage1,
 // 4EME CARROUSEL récupération de la  2e page de données de la requête
 function get2ndPageBiographyFilms(biographyFilmsCategoryList, 
                                     urlRequeteBiographyPage2){
-    console.log(biographyFilmsCategoryList);
     fetch(urlRequeteBiographyPage2)
         .then(function(response){
             return response.json();
